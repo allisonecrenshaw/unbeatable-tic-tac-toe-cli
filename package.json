@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/allisonecrenshaw/unbeatable-tic-tac-toe#readme",
   "devDependencies": {
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
   }
 }
