@@ -1,9 +1,11 @@
 {
 	"name": "unbeatable-tic-tac-toe",
 	"version": "1.0.0",
+	"type": "module",
 	"description": "Assignment: Create an unbeatable tic tac toe game w/ interface Could take 8-10 hours to complete on the first run.",
 	"main": "main.js",
 	"scripts": {
+		"start": "node main.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
