@@ -1,13 +1,9 @@
-// Declaration
 export class Board {
 	initializeBoard() {
 		this.cells = [
 			[" ", " ", " "],
 			[" ", " ", " "],
 			[" ", " ", " "],
-			// ["X", "X", "X"],
-			// ["X", "X", "X"],
-			// ["X", "X", "X"],
 		];
 	}
 
