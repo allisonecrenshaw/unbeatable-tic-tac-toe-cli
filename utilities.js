@@ -1,12 +1,13 @@
-function getGameMode() {
-	displayGameModeMessage();
+import * as readlineSync from "readline-sync";
 
-	var gameMode = input("Please enter your preferred game mode (type 'computer' or 'friend'): ");
-	return gameMode;
+export function displayGameModeMessage() {
+	console.log("Welcomem to Tic Taco Toe!");
+	console.log("You can play against the computer or against a friend.");
 }
 
-function displayGameModeMessage() {
-	console.log("Welcomem to Tic Taco Toe!");
-	console.log("You have two play options:");
-	console.log("You can play against the computer or against a friend.");
+export function getGameMode() {
+	const gameMode = readlineSync.question(
+		"Please enter your preferred game mode (type 'computer' or 'friend'): "
+	);
+	return gameMode;
 }

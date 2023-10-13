@@ -1,7 +1,9 @@
+import { Board } from "./board.js";
+
 export class Game {
-	constructor(numOfPlayers) {
+	constructor(gameMode) {
 		this.board = new Board();
-		this.numOfPlayers = numOfPlayers;
+		this.gameMode = gameMode;
 		this.gameWon = false;
 		this.winner = null;
 	}
