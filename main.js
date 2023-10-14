@@ -6,7 +6,4 @@ var gameMode = utilities.displayWelcomeAndGetGameMode();
 
 const game = new Game(gameMode);
 
-const gameBoard = new Board();
-gameBoard.initializeBoard();
-
-gameBoard.displayBoard();
+game.play();
