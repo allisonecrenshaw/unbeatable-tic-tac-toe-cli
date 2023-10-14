@@ -2,8 +2,7 @@ import { Board } from "./board.js";
 import { Game } from "./game.js";
 import * as utilities from "./utilities.js";
 
-utilities.displayGameModeMessage();
-var gameMode = utilities.getGameMode();
+var gameMode = utilities.displayWelcomeAndGetGameMode();
 
 const game = new Game(gameMode);
 
