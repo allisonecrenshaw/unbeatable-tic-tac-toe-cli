@@ -1,15 +1,15 @@
 import * as readlineSync from "readline-sync";
 
 export function displayWelcomeAndGetGameMode() {
-    utilities.displayWelcomeMessage();
+    displayWelcomeMessage();
 
-    utilities.displayGameModeMessage();
+    displayGameModeMessage();
 
-    var gameMode = utilities.getGameMode();
+    var gameMode = getGameMode();
 
-    utilities.displayGameModeConfirmation(gameMode);
+    displayGameModeConfirmation(gameMode);
 
-    return gameMode();
+    return gameMode;
 }
 
 export function displayWelcomeMessage() {
