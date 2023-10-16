@@ -3,7 +3,7 @@ import * as readlineSync from "readline-sync";
 export function displayWelcomeAndGetGameMode() {
 	displayWelcomeMessage();
 
-	displayGameModeMessage();
+	displayGameModeOptions();
 
 	var gameMode = getGameMode();
 
@@ -20,7 +20,7 @@ export function displayWelcomeMessage() {
 	console.log(line);
 }
 
-export function displayGameModeMessage() {
+export function displayGameModeOptions() {
 	console.log("\nYou can play against the computer or against a friend.");
 }
 
@@ -32,5 +32,5 @@ export function getGameMode() {
 }
 
 export function displayGameModeConfirmation(gameMode) {
-	console.log("\nYou have chosen to play in ", gameMode, " mode.");
+	console.log(`\nYou have chosen to play in ${gameMode} mode.`);
 }
