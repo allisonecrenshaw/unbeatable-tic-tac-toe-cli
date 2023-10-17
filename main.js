@@ -17,6 +17,6 @@ if (gameMode == "friend") {
 	process.exit(1);
 }
 
-const game = new Game(gameMode);
+const game = new Game(gameMode, player1, player2);
 
 game.play();
