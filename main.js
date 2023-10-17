@@ -6,12 +6,12 @@ var gameMode = utilities.displayWelcomeAndGetGameMode();
 
 let player1, player2;
 
+player1 = Player.initializePlayerFromCLI(1);
+
 if (gameMode == "friend") {
-	player1 = await Player.initializePlayerFromCLI(1);
-	player2 = await Player.initializePlayerFromCLI(2);
+	player2 = Player.initializePlayerFromCLI(2);
 } else if (gameMode == "computer") {
-	player1 = await Player.initializePlayerFromCLI(1);
-	player2 = await Player.initializeAIPlayer(2);
+	player2 = Player.initializeAIPlayer(2);
 } else {
 	console.log("Invalid game mode. Closing the game.");
 	process.exit(1);
