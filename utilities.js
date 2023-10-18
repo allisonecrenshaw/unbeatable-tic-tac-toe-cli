@@ -34,3 +34,25 @@ export function getGameMode() {
 export function displayGameModeConfirmation(gameMode) {
 	console.log(`\nYou have chosen to play in ${gameMode} mode.`);
 }
+
+export function createPlayer1() {
+	let player1Name = readlineSync.question(`\nEnter a name for Player 1: `);
+
+	let player1 = new Player(1, false, player1Name);
+
+	return player1;
+}
+
+export function createPlayer2() {
+	if (gameMode == "friend") {
+		let player2Name = readlineSync.question(`\nEnter a name for Player 2: `);
+		player2 = new Player(2, false, player2Name);
+	} else if (gameMode == "computer") {
+		player2 = new Player(2, true);
+	} else {
+		console.log("Invalid game mode. Closing the game.");
+		process.exit(1);
+	}
+
+	return player2;
+}
