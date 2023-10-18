@@ -1,25 +1,19 @@
-import * as utilities from "./utilities.js";
 import * as readlineSync from "readline-sync";
 
 export class Player {
-	constructor(name, isAI, turnOrder) {
-		this.name = name;
-		this.isAI = isAI;
+	constructor(turnOrder, isAI, name) {
 		this.turnOrder = turnOrder;
+
+		this.isAI = isAI;
+
+		if (isAI == true) {
+			this.name = "The Computer";
+		} else {
+			this.name = name ?? `Player ${turnOrder}`;
+		}
 	}
 
-	static async initializePlayerFromCLI(playerNumber) {
-		const name = readlineSync.question(`\nEnter player ${playerNumber}'s name: `);
-		const isAI = false;
-
-		const player = new Player(name, isAI, playerNumber);
-
-		return player;
-	}
-
-	initializeAIPlayer(playerNumber) {
-		this.name = "The Computer";
-		this.isAI = true;
-		this.playerOrder = 2;
+	toString() {
+		return `Player(name: ${this.name}, isAI: ${this.isAI}, playerOrder: ${this.playerOrder})`;
 	}
 }

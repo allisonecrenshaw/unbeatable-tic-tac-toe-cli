@@ -4,14 +4,16 @@ import * as utilities from "./utilities.js";
 
 var gameMode = utilities.displayWelcomeAndGetGameMode();
 
-let player1, player2;
+let player1Name = readlineSync.question(`\nEnter a name for Player 1: `);
 
-player1 = Player.initializePlayerFromCLI(1);
+let player1 = new Player(1, false, player1Name);
+let player2;
 
 if (gameMode == "friend") {
-	player2 = Player.initializePlayerFromCLI(2);
+	let player2Name = readlineSync.question(`\nEnter a name for Player 2: `);
+	player2 = new Player(2, false, player2Name);
 } else if (gameMode == "computer") {
-	player2 = Player.initializeAIPlayer(2);
+	player2 = new Player(2, true);
 } else {
 	console.log("Invalid game mode. Closing the game.");
 	process.exit(1);
