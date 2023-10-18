@@ -15,6 +15,10 @@ export class Game {
 	play() {
 		console.log("\nLet's play!");
 
+		console.log(`Player 1: ${this.player1}`);
+		console.log(`Player 2: ${this.player2}`);
+		console.log(`Current player: ${this.currentPlayer}`);
+
 		this.board.initializeBoard();
 
 		this.playerTurn();
