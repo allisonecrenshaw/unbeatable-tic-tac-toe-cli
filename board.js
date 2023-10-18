@@ -8,13 +8,13 @@ export class Board {
 	}
 
 	displayBoard() {
-		var line = "  -------------";
-		var columnLabels = "    A   B   C";
+		let line = "  -------------";
+		let columnLabels = "    A   B   C";
 		console.log();
 		console.log(columnLabels);
 		console.log(line);
-		for (var rowIndex = 0; rowIndex < this.cells.length; rowIndex++) {
-			var thisRow = this.cells[rowIndex];
+		for (let rowIndex = 0; rowIndex < this.cells.length; rowIndex++) {
+			let thisRow = this.cells[rowIndex];
 			console.log(rowIndex + 1, "|", thisRow[0], "|", thisRow[1], "|", thisRow[2], "|");
 		}
 		console.log(line);
