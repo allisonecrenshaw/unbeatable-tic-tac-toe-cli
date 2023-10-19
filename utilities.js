@@ -1,4 +1,5 @@
 import * as readlineSync from "readline-sync";
+import { Player } from "./player.js";
 
 export function displayWelcomeAndGetGameMode() {
 	displayWelcomeMessage();
@@ -32,7 +33,17 @@ export function getGameMode() {
 }
 
 export function displayGameModeConfirmation(gameMode) {
-	console.log(`\nYou have chosen to play in ${gameMode} mode.`);
+	if (gameMode == "friend") {
+		console.log(`\nYou have chosen to play in ${gameMode} mode.`);
+	} else if (gameMode == "computer") {
+		console.log(`\nYou have chosen to play in ${gameMode} mode but it is not yet available.`);
+		console.log(`\nClosing the game. Goodbye`);
+		process.exit(1);
+	} else {
+		console.log(`\n${gameMode} is not a valid game mode.`);
+		console.log(`\nClosing the game. Goodbye`);
+		process.exit(1);
+	}
 }
 
 export function createPlayer1() {
@@ -43,7 +54,9 @@ export function createPlayer1() {
 	return player1;
 }
 
-export function createPlayer2() {
+export function createPlayer2(gameMode) {
+	let player2;
+
 	if (gameMode == "friend") {
 		let player2Name = readlineSync.question(`\nEnter a name for Player 2: `);
 		player2 = new Player(2, false, player2Name);
