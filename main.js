@@ -1,7 +1,5 @@
-import { Player } from "./player.js";
 import { Game } from "./game.js";
 import * as utilities from "./utilities.js";
-import * as readlineSync from "readline-sync";
 
 let gameMode = utilities.displayWelcomeAndGetGameMode();
 
