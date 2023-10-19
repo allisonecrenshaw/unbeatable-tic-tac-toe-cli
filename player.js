@@ -1,5 +1,3 @@
-import * as readlineSync from "readline-sync";
-
 export class Player {
 	constructor(turnOrder, isAI, name) {
 		this.turnOrder = turnOrder;
