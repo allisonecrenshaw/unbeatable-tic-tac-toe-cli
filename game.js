@@ -25,10 +25,11 @@ export class Game {
 		const move = readlineSync.question(
 			"\nPlease enter the coordinate for your move (ex: A1): "
 		);
-		this.updateBoard(move);
-	}
 
-	updateBoard(move) {
-		console.log(`Will update board here with ${this.currentPlayer.name}'s move ${move}.`);
+		if (this.board.isMoveValid(move)) {
+			this.board.updateBoard(move);
+		} else {
+			console.log("Move is not valid.");
+		}
 	}
 }
