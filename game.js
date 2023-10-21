@@ -17,11 +17,13 @@ export class Game {
 
 		this.board.initializeBoard();
 
+		this.board.displayBoard();
+
 		this.playerTurn();
 	}
 
 	playerTurn() {
-		console.log(`It's ${this.currentPlayer.name}'s turn.`);
+		console.log(`\nIt's ${this.currentPlayer.name}'s turn.`);
 		const move = readlineSync.question(
 			"\nPlease enter the coordinate for your move (ex: A1): "
 		);
