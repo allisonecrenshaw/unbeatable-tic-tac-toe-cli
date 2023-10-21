@@ -5,17 +5,28 @@ export class Board {
 			[" ", " ", " "],
 			[" ", " ", " "],
 		];
+
+		this.rowLabels = ["A", "B", "C"];
 	}
 
 	displayBoard() {
 		let line = "  -------------";
-		let columnLabels = "    A   B   C";
+		let columnLabels = "    1   2   3";
 		console.log();
 		console.log(columnLabels);
 		console.log(line);
 		for (let rowIndex = 0; rowIndex < this.cells.length; rowIndex++) {
 			let thisRow = this.cells[rowIndex];
-			console.log(rowIndex + 1, "|", thisRow[0], "|", thisRow[1], "|", thisRow[2], "|");
+			console.log(
+				this.rowLabels[rowIndex],
+				"|",
+				thisRow[0],
+				"|",
+				thisRow[1],
+				"|",
+				thisRow[2],
+				"|"
+			);
 		}
 		console.log(line);
 	}
