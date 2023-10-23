@@ -24,7 +24,7 @@ export class Game {
 
 	playerTurn() {
 		console.log(`\nIt's ${this.currentPlayer.name}'s turn.`);
-		const move = readlineSync.question(
+		const enteredCoordinates = readlineSync.question(
 			"\nPlease enter the coordinate for your move (ex: A1): "
 		);
 
