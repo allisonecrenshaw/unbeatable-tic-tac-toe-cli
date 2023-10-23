@@ -19,8 +19,8 @@ export class Move {
 		const row = coordinates.charAt(0);
 		const column = coordinates.charAt(1);
 
-		const isValidRow = this.validateRow(row);
-		const isValidColumn = this.validateColumn(column);
+		const isValidRow = this.isRowValid(row);
+		const isValidColumn = this.isColumnValid(column);
 
 		return {
 			isValid: isValidRow && isValidColumn,
@@ -29,12 +29,14 @@ export class Move {
 		};
 	}
 
-	validateRow(row) {
-		// Implement row validation logic
-		// Return true if valid, false otherwise
+	isRowValid(row) {
+		if (row == "A" || row == "B" || row == "C") {
+			return true;
+		}
+		return false;
 	}
 
-	validateColumn(column) {
+	isColumnValid(column) {
 		// Implement column validation logic
 		// Return true if valid, false otherwise
 	}
