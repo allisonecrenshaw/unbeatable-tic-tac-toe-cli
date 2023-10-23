@@ -28,10 +28,10 @@ export class Game {
 			"\nPlease enter the coordinate for your move (ex: A1): "
 		);
 
-		if (this.board.isMoveValid(move)) {
-			this.board.updateBoard(move);
-		} else {
-			console.log("Move is not valid.");
-		}
+		// if (this.board.isMoveValid(move)) {
+		// 	this.board.updateBoard(move);
+		// } else {
+		// 	console.log("Move is not valid.");
+		// }
 	}
 }

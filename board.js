@@ -31,27 +31,6 @@ export class Board {
 		console.log(line);
 	}
 
-	isMoveValid(move) {
-		if (move.length != 2) {
-			return false;
-		}
-
-		let firstChar = move.charAt(0);
-
-		if (firstChar != "A" && firstChar != "B" && firstChar != "C") {
-			return false;
-		}
-
-		let secondChar = move.charAt(1);
-
-		if (secondChar != "1" && secondChar != "2" && secondChar != "3") {
-			return false;
-		}
-
-		console.log("Move is valid, returning true.");
-		return true;
-	}
-
 	updateBoard(move) {
 		console.log(`Will update board here with move ${move}.`);
 	}
