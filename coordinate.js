@@ -12,12 +12,10 @@ export class Coordinate {
 
 		if (coordinate.isXValid != true) {
 			throw new Error("Invalid coordinate: x value invalid.");
-		} 
-		
-		if (coordinate.isYValid != true) {
-			throw new Error("Invalid coordinate: y value invalid.");
 		}
 
+		if (coordinate.isYValid != true) {
+			throw new Error("Invalid coordinate: y value invalid.");
 		}
 	}
 
