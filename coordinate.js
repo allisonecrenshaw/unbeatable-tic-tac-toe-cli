@@ -10,7 +10,15 @@ export class Coordinate {
 			throw new Error("Invalid coordinate: length should be 2.");
 		}
 
-		// implement check to row and column
+		if (coordinate.isXValid != true) {
+			throw new Error("Invalid coordinate: x value invalid.");
+		} 
+		
+		if (coordinate.isYValid != true) {
+			throw new Error("Invalid coordinate: y value invalid.");
+		}
+
+		}
 	}
 
 	isXValid(x) {
