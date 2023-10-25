@@ -1,20 +1,22 @@
 export class Coordinate {
 	constructor(coordinate) {
-		this.validateCoordinate(coordinate);
-		this.x = coordinate.charAt(0);
-		this.y = coordinate.charAt(1);
-	}
-
-	validateCoordinate(coordinate) {
-		if (coordinate.length != 2) {
+		if (coordinate.length !== 2) {
 			throw new Error("Invalid coordinate: length should be 2.");
 		}
 
-		if (coordinate.isXValid != true) {
+		const [x, y] = coordinate.split("");
+		this.validateCoordinate(x, y);
+
+		this.x = x;
+		this.y = y;
+	}
+
+	validateCoordinate(x, y) {
+		if (!this.isXValid(x)) {
 			throw new Error("Invalid coordinate: x value invalid.");
 		}
 
-		if (coordinate.isYValid != true) {
+		if (!this.isYValid(y)) {
 			throw new Error("Invalid coordinate: y value invalid.");
 		}
 	}
