@@ -1,4 +1,6 @@
 import { Board } from "./board.js";
+import { Coordinate } from "./coordinate.js";
+import { Move } from "./move.js";
 import * as readlineSync from "readline-sync";
 
 export class Game {
@@ -19,19 +21,20 @@ export class Game {
 
 		this.board.displayBoard();
 
-		this.playerTurn();
+		this.playerTurn(this.currentPlayer);
 	}
 
-	playerTurn() {
+	playerTurn(currentPlayer) {
 		console.log(`\nIt's ${this.currentPlayer.name}'s turn.`);
-		const enteredCoordinates = readlineSync.question(
+		const enteredCoordinate = readlineSync.question(
 			"\nPlease enter the coordinate for your move (ex: A1): "
 		);
+		const coordinate = new Coordinate(enteredCoordinate);
+		console.log(coordinate);
 
-		// if (this.board.isMoveValid(move)) {
-		// 	this.board.updateBoard(move);
-		// } else {
-		// 	console.log("Move is not valid.");
-		// }
+		if (coordinate) {
+			const move = new Move(currentPlayer, coordinate);
+			this.board.updateBoard(move);
+		}
 	}
 }
