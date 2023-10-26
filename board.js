@@ -32,6 +32,8 @@ export class Board {
 	}
 
 	updateBoard(move) {
-		console.log(`Will update board here with move ${move}.`);
+		console.log(
+			`Will update board here with move ${move.coordinate.x}${move.coordinate.y} from player ${move.player.name}.`
+		);
 	}
 }
