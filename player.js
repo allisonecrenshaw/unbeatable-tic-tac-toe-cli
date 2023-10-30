@@ -23,8 +23,4 @@ export class Player {
 	toString() {
 		return `Player(name: ${this.name}, isAI: ${this.isAI}, playerOrder: ${this.playerOrder})`;
 	}
-
-	switchPlayer() {
-		return this.turnOrder === 1 ? 2 : 1;
-	}
 }
