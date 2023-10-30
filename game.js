@@ -10,7 +10,7 @@ export class Game {
 		this.player2 = player2;
 		this.currentPlayer = player1;
 		this.gameMode = gameMode;
-		this.gameWon = false;
+		this.gameFinished = false;
 		this.winner = null;
 	}
 
@@ -19,10 +19,11 @@ export class Game {
 
 		this.board.initializeBoard();
 
-		while (this.gameWon === false) {
-			this.board.displayBoard;
+		while (this.gameFinished === false) {
+			this.board.displayBoard();
 			this.takeTurn();
 			this.currentPlayer = this.switchPlayer();
+			this.gameFinished = isGameFinished();
 		}
 	}
 
@@ -34,12 +35,16 @@ export class Game {
 		const coordinate = new Coordinate(enteredCoordinate);
 
 		if (coordinate) {
-			const move = new Move(currentPlayer, coordinate);
+			const move = new Move(this.currentPlayer, coordinate);
 			this.board.updateBoard(move);
 		}
 	}
 
 	switchPlayer() {
 		return this.currentPlayer === this.player1 ? this.player2 : this.player1;
+	}
+
+	isGameFinished() {
+		console.log("isGameFinished not yet implemented.");
 	}
 }
