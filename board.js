@@ -34,8 +34,7 @@ export class Board {
 	updateBoard(move) {
 		let x = move.coordinate.x;
 		let y = move.coordinate.y;
-		let symbol = move.player.symbol;
 
-		this.cells[x[y]] == symbol;
+		this.cells[x][y] = move.player.symbol;
 	}
 }
