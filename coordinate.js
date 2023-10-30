@@ -1,9 +1,9 @@
-import { transform } from "typescript";
-
 export class Coordinate {
     constructor(coordinate) {
         if (coordinate.length !== 2) {
-            throw new Error("Invalid coordinate: length should be 2.");
+            throw new Error(
+                "Invalid coordinate: coordinate should only have two characters (ex: A1)"
+            );
         }
 
         const [x, y] = coordinate.split("");
