@@ -32,8 +32,10 @@ export class Board {
 	}
 
 	updateBoard(move) {
-		console.log(
-			`Will update board here with move ${move.coordinate.x}${move.coordinate.y} from player ${move.player.name}.`
-		);
+		let x = move.coordinate.x;
+		let y = move.coordinate.y;
+		let symbol = move.player.symbol;
+
+		this.cells[x[y]] == symbol;
 	}
 }
