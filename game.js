@@ -23,7 +23,7 @@ export class Game {
 			this.board.displayBoard();
 			this.takeTurn();
 			this.currentPlayer = this.switchPlayer();
-			this.gameFinished = isGameFinished();
+			this.gameFinished = isGameFinished(this.board);
 		}
 	}
 
@@ -45,6 +45,30 @@ export class Game {
 	}
 
 	isGameFinished() {
-		console.log("isGameFinished not yet implemented.");
+		if (gameWon() || isBoardFull()) {
+			gameFinished = true;
+		}
+	}
+
+	gameWon() {
+		checkRows();
+		checkColumns();
+		checkDiagonals();
+	}
+
+	isBoardFull() {
+		console.log("Will check here if board is full.");
+	}
+
+	checkRows() {
+		console.log("Check rows.");
+	}
+
+	checkColumns() {
+		console.log("Check columns.");
+	}
+
+	checkDiagonals() {
+		console.log("Check diagonals.");
 	}
 }
