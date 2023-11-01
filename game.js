@@ -23,7 +23,11 @@ export class Game {
 			this.board.displayBoard();
 			this.takeTurn();
 			this.currentPlayer = this.switchPlayer();
-			this.gameFinished = isGameFinished(this.board);
+			this.gameFinished = this.isGameFinished(this.board);
+
+			if (this.gameFinished == true) {
+				console.log("Game is finished.");
+			}
 		}
 	}
 
@@ -45,30 +49,52 @@ export class Game {
 	}
 
 	isGameFinished() {
-		if (gameWon() || isBoardFull()) {
-			gameFinished = true;
+		let gameWon = this.gameWon();
+		let boardFull = this.isBoardFull();
+
+		if (gameWon == true || boardFull == true) {
+			return true;
 		}
+
+		return false;
 	}
 
 	gameWon() {
-		checkRows();
-		checkColumns();
-		checkDiagonals();
+		this.checkRows();
+		this.checkColumns();
+		this.checkDiagonals();
 	}
 
 	isBoardFull() {
-		console.log("Will check here if board is full.");
+		const cells = this.board.cells;
+
+		for (let rowIndex = 0; rowIndex < cells.length; rowIndex++) {
+			// Need to check this function -- not looping past row 0.
+			console.log(`Checking row ${rowIndex}`);
+			for (let columnIndex = 0; columnIndex < cells[rowIndex].length; columnIndex++) {
+				console.log(`Checking row ${rowIndex}, column ${columnIndex}`);
+				if (cells[rowIndex][columnIndex] == " ") {
+					console.log(`Cell: row ${rowIndex}, column ${columnIndex} is empty.`);
+					console.log(`Returning false -- board not full.`);
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		return true;
 	}
 
 	checkRows() {
-		console.log("Check rows.");
+		console.log("Under construction - checkRows.");
 	}
 
 	checkColumns() {
-		console.log("Check columns.");
+		console.log("Under construction - checkColumns.");
 	}
 
 	checkDiagonals() {
-		console.log("Check diagonals.");
+		console.log("Under construction - checkDiagonals.");
 	}
 }
