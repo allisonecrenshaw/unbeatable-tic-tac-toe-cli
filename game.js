@@ -63,6 +63,9 @@ export class Game {
 
     gameWon() {
         winner = this.hasWinningRow();
+        if (winner != null) {
+            return true;
+        }
         this.checkColumns();
         this.checkDiagonals();
     }
