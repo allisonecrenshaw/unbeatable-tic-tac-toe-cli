@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1>Welcome to My Vue App</h1>
+		<h1>Welcome to Unbeatable Tic Tac Toe</h1>
 		<!-- Other content for your home page -->
 	</div>
 </template>
