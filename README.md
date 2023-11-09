@@ -1,5 +1,24 @@
 # unbeatable-tic-tac-toe
 
-Assignment:
-Create an unbeatable tic tac toe game w/ interface
-Could take 8-10 hours to complete on the first run.
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
