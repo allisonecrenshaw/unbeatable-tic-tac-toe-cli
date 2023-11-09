@@ -37,4 +37,15 @@ export class Board {
 
 		this.cells[x][y] = move.player.symbol;
 	}
+
+	isBoardFull() {
+		for (let rowIndex = 0; rowIndex < this.cells.length; rowIndex++) {
+			for (let columnIndex = 0; columnIndex < this.cells[rowIndex].length; columnIndex++) {
+				if (this.cells[rowIndex][columnIndex] == " ") {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 }
