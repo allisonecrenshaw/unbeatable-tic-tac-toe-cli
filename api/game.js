@@ -49,18 +49,19 @@ export class Game {
 	}
 
 	isGameFinished() {
-		let gameWon = this.gameWon();
+		let gameWon = this.isGameWon();
 		let boardFull = this.board.isBoardFull();
 
-		if (gameWon == true || boardFull == true) {
+		if (isGameWon == true || boardFull == true) {
+			this.board.displayBoard();
 			return true;
 		}
 
 		return false;
 	}
 
-	gameWon() {
-		winner = this.hasWinningRow();
+	isGameWon() {
+		let winner = this.hasWinningRow();
 		if (winner != null) {
 			return true;
 		}
