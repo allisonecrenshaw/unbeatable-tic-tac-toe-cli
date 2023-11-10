@@ -4,29 +4,30 @@ import { Move } from "./move.js";
 import * as readlineSync from "readline-sync";
 
 export class Game {
-	constructor(gameMode, player1, player2) {
+	constructor(playerMode, player1, player2) {
 		this.board = new Board();
 		this.player1 = player1;
 		this.player2 = player2;
 		this.currentPlayer = player1;
-		this.gameMode = gameMode;
-		this.gameFinished = false;
-		this.winner = null;
+		this.playerMode = playerMode;
+		this.finished = false;
+		this.winningPlayer = null;
 	}
 
 	play() {
 		console.log("\nLet's play!");
 
-		this.board.initializeBoard();
+		this.board.initialize();
 
-		while (this.gameFinished === false) {
-			this.board.displayBoard();
+		while (this.finished === false) {
+			this.board.display();
 			this.takeTurn();
-			this.currentPlayer = this.switchPlayer();
-			this.gameFinished = this.isGameFinished(this.board);
 
-			if (this.gameFinished == true) {
-				console.log("Game is finished.");
+			if (this.finished === true) {
+				this.board.display();
+				this.printFinishMessage();
+			} else {
+				this.currentPlayer = this.switchPlayer();
 			}
 		}
 	}
@@ -40,7 +41,11 @@ export class Game {
 
 		if (coordinate) {
 			const move = new Move(this.currentPlayer, coordinate);
-			this.board.updateBoard(move);
+			this.board.update(move);
+		}
+
+		if (this.board.won === true) {
+			this.finished = true;
 		}
 	}
 
@@ -48,48 +53,24 @@ export class Game {
 		return this.currentPlayer === this.player1 ? this.player2 : this.player1;
 	}
 
-	isGameFinished() {
-		let gameWon = this.isGameWon();
-		let boardFull = this.board.isBoardFull();
-
-		if (isGameWon == true || boardFull == true) {
-			this.board.displayBoard();
+	isFinished() {
+		if (this.board.won === true || this.board.isFull === true) {
 			return true;
 		}
 
 		return false;
 	}
 
-	isGameWon() {
-		let winner = this.hasWinningRow();
-		if (winner != null) {
-			return true;
+	printFinishMessage() {
+		if (this.board.won === true) {
+			let winningPlayer = this.getWinningPlayer();
+			console.log(`${winningPlayer.name} wins!`);
 		}
-		this.checkColumns();
-		this.checkDiagonals();
+		console.log("The board is full -- it's a tie!");
+		console.log("Great job to both players.");
 	}
 
-	hasWinningRow() {
-		const cells = this.board.cells;
-
-		for (let rowIndex = 0; rowIndex < cells.length; rowIndex++) {
-			if (
-				cells[rowIndex][0] != " " &&
-				cells[rowIndex][0] == cells[rowIndex][1] &&
-				cells[rowIndex][1] == cells[rowIndex][2]
-			) {
-				return cells[rowIndex][0];
-			} else {
-				return null;
-			}
-		}
-	}
-
-	checkColumns() {
-		console.log("Under construction - checkColumns.");
-	}
-
-	checkDiagonals() {
-		console.log("Under construction - checkDiagonals.");
+	getWinningPlayer() {
+		return this.board.winnerSymbol === this.player1.symbol ? this.player1 : this.player2;
 	}
 }
