@@ -23,6 +23,10 @@ export class Game {
 			this.board.display();
 			this.takeTurn();
 
+			if (this.board.won === true) {
+				this.finished = true;
+			}
+
 			if (this.finished === true) {
 				this.board.display();
 				this.printFinishMessage();
@@ -42,10 +46,6 @@ export class Game {
 		if (coordinate) {
 			const move = new Move(this.currentPlayer, coordinate);
 			this.board.update(move);
-		}
-
-		if (this.board.won === true) {
-			this.finished = true;
 		}
 	}
 
