@@ -23,7 +23,7 @@ export class Game {
             this.board.display();
             this.takeTurn();
 
-            if (this.board.won === true) {
+            if (this.board.won === true || this.board.full === true) {
                 this.finished = true;
             }
 
