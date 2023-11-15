@@ -25,7 +25,7 @@ export default {
 }
 
 .small-image {
-	max-width: 400px; /* Set a specific maximum width */
+	max-width: 100px; /* Set a specific maximum width */
 	height: auto; /* Maintain the aspect ratio */
 }
 </style>
