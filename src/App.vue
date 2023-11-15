@@ -1,5 +1,5 @@
 <template>
-	<img alt="taco doodle" src="./assets/taco-doodle.jpg" />
+	<img alt="taco doodle" src="./assets/taco-doodle.jpg" class="small-image" />
 	<HelloWorld msg="Welcome to Unbeatable Tic Taco Toe" />
 </template>
 
@@ -22,5 +22,10 @@ export default {
 	text-align: center;
 	color: #2c3e50;
 	margin-top: 60px;
+}
+
+.small-image {
+	max-width: 400px; /* Set a specific maximum width */
+	height: auto; /* Maintain the aspect ratio */
 }
 </style>
