@@ -4,73 +4,78 @@ import { Move } from "./move.js";
 import * as readlineSync from "readline-sync";
 
 export class Game {
-	constructor(playerMode, player1, player2) {
-		this.board = new Board();
-		this.player1 = player1;
-		this.player2 = player2;
-		this.currentPlayer = player1;
-		this.playerMode = playerMode;
-		this.finished = false;
-		this.winningPlayer = null;
-	}
+    constructor(playerMode, player1, player2) {
+        this.board = new Board();
+        this.player1 = player1;
+        this.player2 = player2;
+        this.currentPlayer = player1;
+        this.playerMode = playerMode;
+        this.finished = false;
+        this.winningPlayer = null;
+    }
 
-	play() {
-		console.log("\nLet's play!");
+    play() {
+        console.log("\nLet's play!");
 
-		this.board.initialize();
+        this.board.initialize();
 
-		while (this.finished === false) {
-			this.board.display();
-			this.takeTurn();
+        while (this.finished === false) {
+            this.board.display();
+            this.takeTurn();
 
-			if (this.board.won === true) {
-				this.finished = true;
-			}
+            if (this.board.won === true || this.board.full === true) {
+                this.finished = true;
+            }
 
-			if (this.finished === true) {
-				this.board.display();
-				this.printFinishMessage();
-			} else {
-				this.currentPlayer = this.switchPlayer();
-			}
-		}
-	}
+            if (this.finished === true) {
+                this.board.display();
+                this.printFinishMessage();
+            } else {
+                this.currentPlayer = this.switchPlayer();
+            }
+        }
+    }
 
-	takeTurn() {
-		console.log(`\nIt's ${this.currentPlayer.name}'s turn.`);
-		const enteredCoordinate = readlineSync.question(
-			"\nPlease enter the coordinate for your move (ex: A1): "
-		);
-		const coordinate = new Coordinate(enteredCoordinate);
+    takeTurn() {
+        console.log(`\nIt's ${this.currentPlayer.name}'s turn.`);
+        const enteredCoordinate = readlineSync.question(
+            "\nPlease enter the coordinate for your move (ex: A1): "
+        );
+        const coordinate = new Coordinate(enteredCoordinate);
 
-		if (coordinate) {
-			const move = new Move(this.currentPlayer, coordinate);
-			this.board.update(move);
-		}
-	}
+        if (coordinate) {
+            const move = new Move(this.currentPlayer, coordinate);
+            this.board.update(move);
+        }
+    }
 
-	switchPlayer() {
-		return this.currentPlayer === this.player1 ? this.player2 : this.player1;
-	}
+    switchPlayer() {
+        return this.currentPlayer === this.player1
+            ? this.player2
+            : this.player1;
+    }
 
-	isFinished() {
-		if (this.board.won === true || this.board.isFull === true) {
-			return true;
-		}
+    isFinished() {
+        if (this.board.won === true || this.board.isFull === true) {
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	printFinishMessage() {
-		if (this.board.won === true) {
-			let winningPlayer = this.getWinningPlayer();
-			console.log(`${winningPlayer.name} wins!`);
-		}
-		console.log("The board is full -- it's a tie!");
-		console.log("Great job to both players.");
-	}
+    printFinishMessage() {
+        if (this.board.won === true) {
+            let winningPlayer = this.getWinningPlayer();
+            console.log(`${winningPlayer.name} wins!`);
+            return;
+        }
+        console.log("The board is full -- it's a tie!");
+        console.log("Great job to both players.");
+    }
 
-	getWinningPlayer() {
-		return this.board.winnerSymbol === this.player1.symbol ? this.player1 : this.player2;
-	}
+    getWinningPlayer() {
+        return this.board.winningSymbol === this.player1.symbol
+            ? this.player1
+            : this.player2;
+    }
 }
