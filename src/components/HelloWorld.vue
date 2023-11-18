@@ -64,6 +64,16 @@
 			</li>
 		</ul>
 	</div>
+	<div>
+		<h3>This is where tic tac toe will go...</h3>
+		<div>
+			<p>--------</p>
+			<p>| | | |</p>
+			<p>| | | |</p>
+			<p>| | | |</p>
+			<p>--------</p>
+		</div>
+	</div>
 </template>
 
 <script>
