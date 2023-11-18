@@ -56,13 +56,23 @@ export function createPlayer1() {
     return player1;
 }
 
-export function createPlayer2(gameMode) {
+export function createPlayer2(gameMode, player1Name) {
     let player2;
 
     if (gameMode == "friend") {
-        let player2Name = readlineSync.question(
+        let player2Name = "";
+        player2Name = readlineSync.question(
             `\nEnter a name for Player 2: `
         );
+        while (arePlayerNamesSame(player1Name, player2Name))  {
+            if (arePlayerNamesSame(player1Name, player2Name)) {
+                console.log(`Player 1 already has name ${player2Name}.`)
+                console.log(`Please enter a different name.`)
+            }
+            player2Name = readlineSync.question(
+                `\nEnter a name for Player 2: `
+            );
+        }
         player2 = new Player(2, false, player2Name);
     } else if (gameMode == "computer") {
         player2 = new Player(2, true);
@@ -72,4 +82,8 @@ export function createPlayer2(gameMode) {
     }
 
     return player2;
+}
+
+export function arePlayerNamesSame(player1Name, player2Name) {
+    return player1Name === player2Name ? true : false;
 }
