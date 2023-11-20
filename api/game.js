@@ -44,7 +44,7 @@ export class Game {
         const coordinate = new Coordinate(enteredCoordinate);
 
         if (coordinate) {
-            const move = new Move(this.currentPlayer, coordinate);
+            const move = new Move(this.currentPlayer, coordinate, this.board);
             this.board.update(move);
         }
     }
