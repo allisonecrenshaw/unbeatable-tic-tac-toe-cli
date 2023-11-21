@@ -75,3 +75,19 @@ yarn-error.log
 
 # Other
 .DS_Store
+
+# Webstorm Generated Ignores
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+# WebStorm / IntelliJ IDEA
+.idea/
+
+# JetBrains specific files
+*.iml
+modules.xml
+vcs.xml
+workspace.xml
