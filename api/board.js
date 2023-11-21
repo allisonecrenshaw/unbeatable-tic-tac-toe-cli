@@ -118,4 +118,9 @@ export class Board {
     getWinningDiagonalSymbol() {
         console.log("Under construction - getWinningDiagonal.");
     }
+
+    cellIsEmpty(coordinate) {
+        console.log("Will check if cell is empty.");
+        return true;
+    }
 }

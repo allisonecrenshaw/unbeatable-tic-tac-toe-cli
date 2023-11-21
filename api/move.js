@@ -5,7 +5,10 @@ export class Move {
         this.board = board;
     }
 
-    isMoveCoordinateOccupiedInBoard() {
-        console.log("Check here if move already has been made on this board.")
+    isMoveValid() {
+        if (this.board.cellIsEmpty(this.coordinate)) {
+            return true;
+        }
+        return false;
     }
 }
