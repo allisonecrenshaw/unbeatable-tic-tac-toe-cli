@@ -118,4 +118,10 @@ export class Board {
     getWinningDiagonalSymbol() {
         console.log("Under construction - getWinningDiagonal.");
     }
+
+    cellIsOccupied() {
+        console.log(
+            "Will put a function here to check if cell is already occupied with a move."
+        );
+    }
 }
