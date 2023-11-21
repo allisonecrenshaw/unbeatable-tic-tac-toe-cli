@@ -82,3 +82,12 @@ yarn-error.log
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+# WebStorm / IntelliJ IDEA
+.idea/
+
+# JetBrains specific files
+*.iml
+modules.xml
+vcs.xml
+workspace.xml
