@@ -103,16 +103,26 @@ export class Board {
                 this.cells[rowIndex][0] == this.cells[rowIndex][1] &&
                 this.cells[rowIndex][1] == this.cells[rowIndex][2]
             ) {
-                console.log("Returning winning row symbol.");
                 return this.cells[rowIndex][0];
             }
-
             return null;
         }
     }
 
     getWinningColumnSymbol() {
-        console.log("Under construction - getWinningColumn.");
+        for(let columnIndex = 0; columnIndex < this.cells.length; columnIndex++) {
+            console.log("Inside of getWinningColumnSymbol.");
+            console.log(`For loop, column index ${columnIndex}`);
+            if (
+                this.cells[0][columnIndex] != " " &&
+                this.cells[0][columnIndex] == this.cells[1][columnIndex] &&
+                this.cells[1][columnIndex] == this.cells[2][columnIndex]
+            ) {
+                console.log("Column winner true, returning this.cells[0][columnIndex].");
+                return this.cells[0][columnIndex];
+            }
+            return null;
+        }
     }
 
     getWinningDiagonalSymbol() {
