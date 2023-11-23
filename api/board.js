@@ -126,7 +126,13 @@ export class Board {
     }
 
     getWinningDiagonalSymbol() {
-        console.log("Under construction - getWinningDiagonal.");
+        if(this.cells[0][0] === this.cells[1][1] && this.cells[2][2]) {
+            return this.cells[0][0];
+        } else if (this.cells[0][2] === this.cells[1][1] && this.cells[2][0]) {
+            return this.cells[0][2];
+        } else {
+            return null;
+        }
     }
 
     cellIsEmpty(coordinate) {
