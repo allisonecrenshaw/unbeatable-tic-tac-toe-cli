@@ -121,14 +121,20 @@ export class Board {
                 console.log("Column winner true, returning this.cells[0][columnIndex].");
                 return this.cells[0][columnIndex];
             }
-            return null;
         }
+        return null;
     }
 
     getWinningDiagonalSymbol() {
-        if(this.cells[0][0] === this.cells[1][1] && this.cells[2][2]) {
+        if(
+            this.cells[0][0] !== " " && 
+            this.cells[0][0] === this.cells[1][1] && 
+            this.cells[1][1] === this.cells[2][2]) {
             return this.cells[0][0];
-        } else if (this.cells[0][2] === this.cells[1][1] && this.cells[2][0]) {
+        } else if (
+            this.cells[0][2] != " " && 
+            this.cells[0][2] === this.cells[1][1] 
+            && this.cells[1][1] === this.cells[2][0]) {
             return this.cells[0][2];
         } else {
             return null;
