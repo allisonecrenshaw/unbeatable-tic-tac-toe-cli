@@ -111,14 +111,11 @@ export class Board {
 
     getWinningColumnSymbol() {
         for(let columnIndex = 0; columnIndex < this.cells.length; columnIndex++) {
-            console.log("Inside of getWinningColumnSymbol.");
-            console.log(`For loop, column index ${columnIndex}`);
             if (
                 this.cells[0][columnIndex] != " " &&
                 this.cells[0][columnIndex] == this.cells[1][columnIndex] &&
                 this.cells[1][columnIndex] == this.cells[2][columnIndex]
             ) {
-                console.log("Column winner true, returning this.cells[0][columnIndex].");
                 return this.cells[0][columnIndex];
             }
         }
@@ -142,7 +139,9 @@ export class Board {
     }
 
     cellIsEmpty(coordinate) {
-        console.log("Will check if cell is empty.");
-        return true;
+        if(this.cells[coordinate.x][coordinate.y] === " ") {
+            return true;
+        }
+        return false;
     }
 }
