@@ -30,22 +30,34 @@ export class Game {
             if (this.finished === true) {
                 this.board.display();
                 this.printFinishMessage();
-            } else {
-                this.currentPlayer = this.switchPlayer();
             }
         }
     }
 
     takeTurn() {
         console.log(`\nIt's ${this.currentPlayer.name}'s turn.`);
-        const enteredCoordinate = readlineSync.question(
-            "\nPlease enter the coordinate for your move (ex: A1): "
-        );
-        const coordinate = new Coordinate(enteredCoordinate);
 
-        if (coordinate) {
-            const move = new Move(this.currentPlayer, coordinate, this.board);
-            this.board.update(move);
+        let coordinate = null;
+        let move;
+        let moveIsValid = false;
+        
+        while(!coordinate && moveIsValid === false) {
+            const enteredCoordinate = readlineSync.question(
+                "\nPlease enter the coordinate for your move (ex: A1): "
+            );
+            coordinate = new Coordinate(enteredCoordinate);
+            
+            if (coordinate) {
+                move = new Move(this.currentPlayer, coordinate, this.board);
+                if(move.coordinateIsEmpty() === true) {
+                    moveIsValid = true;
+                    this.board.update(move);
+                    this.currentPlayer = this.switchPlayer();
+                } else {
+                    console.log("This cell is occupied.");
+                    console.log("Please choose a different cell.");
+                }
+            }
         }
     }
 

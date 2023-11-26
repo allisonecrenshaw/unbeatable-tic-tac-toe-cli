@@ -5,7 +5,7 @@ export class Move {
         this.board = board;
     }
 
-    isMoveValid() {
+    coordinateIsEmpty() {
         if (this.board.cellIsEmpty(this.coordinate)) {
             return true;
         }
