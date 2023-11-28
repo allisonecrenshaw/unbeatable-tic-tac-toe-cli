@@ -1,7 +1,4 @@
 import { Board } from "./board.js";
-import { Coordinate } from "./coordinate.js";
-import { Move } from "./move.js";
-import * as readlineSync from "readline-sync";
 
 export class Game {
     constructor(playerMode, player1, player2) {
@@ -21,42 +18,14 @@ export class Game {
 
         while (this.finished === false) {
             this.board.display();
-            this.takeTurn();
+            let moveExecuted = this.currentPlayer.takeTurn(this.board);
 
             if (this.board.won === true || this.board.full === true) {
                 this.finished = true;
-            }
-
-            if (this.finished === true) {
                 this.board.display();
                 this.printFinishMessage();
-            }
-        }
-    }
-
-    takeTurn() {
-        console.log(`\nIt's ${this.currentPlayer.name}'s turn.`);
-
-        let coordinate = null;
-        let move;
-        let moveIsValid = false;
-        
-        while(!coordinate && moveIsValid === false) {
-            const enteredCoordinate = readlineSync.question(
-                "\nPlease enter the coordinate for your move (ex: A1): "
-            );
-            coordinate = new Coordinate(enteredCoordinate);
-            
-            if (coordinate) {
-                move = new Move(this.currentPlayer, coordinate, this.board);
-                if(move.coordinateIsEmpty() === true) {
-                    moveIsValid = true;
-                    this.board.update(move);
-                    this.currentPlayer = this.switchPlayer();
-                } else {
-                    console.log("This cell is occupied.");
-                    console.log("Please choose a different cell.");
-                }
+            } else if (moveExecuted === true){
+                this.currentPlayer = this.switchPlayer();
             }
         }
     }

@@ -34,6 +34,18 @@ export class Board {
         console.log(line);
     }
 
+    executeMove(move) {
+        if(move.coordinateIsEmpty() === true) {
+            move.moveIsValid = true;
+            this.update(move);
+            return true;
+        } else {
+            console.log("This cell is occupied.");
+            console.log("Please choose a different cell.");
+            return false;
+        }
+    }
+
     update(move) {
         this.updateCells(move);
         this.setIsFull();

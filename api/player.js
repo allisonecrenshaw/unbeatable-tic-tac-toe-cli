@@ -1,3 +1,7 @@
+import { Move } from "./move.js";
+import { Coordinate } from "./coordinate.js";
+import * as readlineSync from "readline-sync";
+
 export class Player {
 	constructor(turnOrder, isAI, name) {
 		this.turnOrder = turnOrder;
@@ -23,4 +27,24 @@ export class Player {
 	toString() {
 		return `Player(name: ${this.name}, isAI: ${this.isAI}, playerOrder: ${this.playerOrder})`;
 	}
+
+	takeTurn(board) {
+        console.log(`\nIt's ${this.name}'s turn.`);
+
+        let coordinate = null;
+        let move;
+        let moveIsValid = false;
+        
+        while(!coordinate && moveIsValid === false) {
+            const enteredCoordinate = readlineSync.question(
+                "\nPlease enter the coordinate for your move (ex: A1): "
+            );
+            coordinate = new Coordinate(enteredCoordinate);
+            
+            if (coordinate) {
+                move = new Move(this.currentPlayer, coordinate, board);
+				board.executeMove(move);
+            }
+        }
+    }
 }
