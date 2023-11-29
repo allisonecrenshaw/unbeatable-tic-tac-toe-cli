@@ -42,7 +42,7 @@ export class Player {
             coordinate = new Coordinate(enteredCoordinate);
             
             if (coordinate) {
-                move = new Move(this.currentPlayer, coordinate, board);
+                move = new Move(this, coordinate, board);
 				board.executeMove(move);
             }
         }
