@@ -33,14 +33,8 @@ export function getGameMode() {
 }
 
 export function displayGameModeConfirmation(gameMode) {
-    if (gameMode == "friend") {
+    if (gameMode == "friend" || gameMode == "computer") {
         console.log(`\nYou have chosen to play in ${gameMode} mode.`);
-    } else if (gameMode == "computer") {
-        console.log(
-            `\nYou have chosen to play in ${gameMode} mode but it is not yet available.`
-        );
-        console.log(`\nClosing the game. Goodbye`);
-        process.exit(1);
     } else {
         console.log(`\n${gameMode} is not a valid game mode.`);
         console.log(`\nClosing the game. Goodbye`);
