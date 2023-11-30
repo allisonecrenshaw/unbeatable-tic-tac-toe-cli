@@ -53,7 +53,7 @@ export function createPlayer1() {
 export function createPlayer2(gameMode, player1Name) {
     let player2;
 
-    if (gameMode == "friend") {
+    if (gameMode === "friend") {
         let player2Name = "";
         player2Name = readlineSync.question(
             `\nEnter a name for Player 2: `
