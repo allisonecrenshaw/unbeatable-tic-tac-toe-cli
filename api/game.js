@@ -24,7 +24,7 @@ export class Game {
                 this.finished = true;
                 this.board.display();
                 this.printFinishMessage();
-            } else if (moveExecuted === true){
+            } else if (moveExecuted === true) {
                 this.currentPlayer = this.switchPlayer();
             }
         }
