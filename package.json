@@ -9,7 +9,7 @@
 	"scripts": {
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
-		"lint": "vue-cli-service lint",
+		"lint": "eslint .",
 		"start": "node main.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
