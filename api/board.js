@@ -9,7 +9,7 @@ export class Board {
         this.rowLabels = ["A", "B", "C"];
         this.won = false;
         this.winningSymbol = null;
-        this.full = false;
+        this.allCellsOccupied = false;
     }
 
     display() {
@@ -48,7 +48,7 @@ export class Board {
 
     update(move) {
         this.updateCells(move);
-        this.setIsFull();
+        this.setAllCellsOccupied();
         this.updateWinState();
     }
 
@@ -59,11 +59,11 @@ export class Board {
         this.cells[x][y] = move.player.symbol;
     }
 
-    setIsFull() {
-        this.full = this.isFull();
+    setAllCellsOccupied() {
+        this.allCellsOccupied = this.allCellsOccupied();
     }
 
-    isFull() {
+    allCellsOccupied() {
         for (let rowIndex = 0; rowIndex < this.cells.length; rowIndex++) {
             for (
                 let columnIndex = 0;
