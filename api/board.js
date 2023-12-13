@@ -60,10 +60,10 @@ export class Board {
     }
 
     setAllCellsOccupied() {
-        this.allCellsOccupied = this.allCellsOccupied();
+        this.allCellsOccupied = this.allCellsAreOccupied();
     }
 
-    allCellsOccupied() {
+    allCellsAreOccupied() {
         for (let rowIndex = 0; rowIndex < this.cells.length; rowIndex++) {
             for (
                 let columnIndex = 0;
