@@ -4,14 +4,9 @@
 	"description": "Assignment: Create an unbeatable tic tac toe game w/ interface Could take 8-10 hours to complete on the first run.",
 	"main": "main.js",
 	"type": "module",
-	"prettier": "./.prettierrc",
 	"private": true,
 	"scripts": {
-		"serve": "vue-cli-service serve",
-		"build": "vue-cli-service build",
-		"lint": "eslint .",
-		"start": "node main.js",
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"start": "node main.js"
 	},
 	"repository": {
 		"type": "git",
@@ -26,37 +21,6 @@
 	"homepage": "https://github.com/allisonecrenshaw/unbeatable-tic-tac-toe#readme",
 	"dependencies": {
 		"core-js": "^3.8.3",
-		"readline-sync": "^1.4.10",
-		"vue": "^3.2.13"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.12.16",
-		"@babel/eslint-parser": "^7.12.16",
-		"@vue/cli-plugin-babel": "~5.0.0",
-		"@vue/cli-plugin-eslint": "~5.0.0",
-		"@vue/cli-service": "^5.0.8",
-		"eslint": "^7.32.0",
-		"eslint-plugin-vue": "^9.19.2",
-		"prettier": "^3.1.0"
-	},
-	"eslintConfig": {
-		"root": true,
-		"env": {
-			"node": true
-		},
-		"extends": [
-			"plugin:vue/vue3-essential",
-			"eslint:recommended"
-		],
-		"parserOptions": {
-			"parser": "@babel/eslint-parser"
-		},
-		"rules": {}
-	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not dead",
-		"not ie 11"
-	]
+		"readline-sync": "^1.4.10"
+	}
 }
