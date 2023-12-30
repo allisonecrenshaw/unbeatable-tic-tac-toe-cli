@@ -18,13 +18,13 @@ export class Game {
 
         while (this.finished === false) {
             this.board.display();
-            let moveExecuted = this.currentPlayer.takeTurn(this.board);
+            this.currentPlayer.takeTurn(this.board);
 
-            if (this.board.won === true || this.board.full === true) {
+            if (this.board.won === true || this.board.allCellsOccupied === true) {
                 this.finished = true;
                 this.board.display();
                 this.printFinishMessage();
-            } else if (moveExecuted === true) {
+            } else {
                 this.currentPlayer = this.switchPlayer();
             }
         }

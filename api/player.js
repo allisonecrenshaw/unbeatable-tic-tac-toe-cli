@@ -32,9 +32,7 @@ export class Player {
         console.log(`\nIt's ${this.name}'s turn.`);
 
         let coordinate = null;
-        let move;
         let moveIsValid = false;
-				let moveExecuted = false;
         
         while(!coordinate && moveIsValid === false) {
             const enteredCoordinate = readlineSync.question(
@@ -43,14 +41,12 @@ export class Player {
             coordinate = new Coordinate(enteredCoordinate);
             
             if (coordinate) {
-                move = new Move(this, coordinate, board);
+                let move = new Move(this, coordinate, board);
 								moveIsValid = move.coordinateIsEmpty();
 								if (moveIsValid === true) {
-									moveExecuted = board.executeMove(move);
+									board.executeMove(move);
 								}
             }
         }
-
-				return moveExecuted;
     }
 }
