@@ -4,11 +4,4 @@ export class Move {
         this.coordinate = coordinate;
         this.board = board;
     }
-
-    coordinateIsEmpty() {
-        if (this.board.cellIsEmpty(this.coordinate)) {
-            return true;
-        }
-        return false;
-    }
 }

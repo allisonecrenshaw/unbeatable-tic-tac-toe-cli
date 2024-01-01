@@ -27,26 +27,4 @@ export class Player {
 	toString() {
 		return `Player(name: ${this.name}, isAI: ${this.isAI}, playerOrder: ${this.playerOrder})`;
 	}
-
-	takeTurn(board) {
-        console.log(`\nIt's ${this.name}'s turn.`);
-
-        let coordinate = null;
-        let moveIsValid = false;
-        
-        while(!coordinate && moveIsValid === false) {
-            const enteredCoordinate = readlineSync.question(
-                "\nPlease enter the coordinate for your move (ex: A1): "
-            );
-            coordinate = new Coordinate(enteredCoordinate);
-            
-            if (coordinate) {
-                let move = new Move(this, coordinate, board);
-								moveIsValid = move.coordinateIsEmpty();
-								if (moveIsValid === true) {
-									board.executeMove(move);
-								}
-            }
-        }
-    }
 }
