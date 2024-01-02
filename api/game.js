@@ -18,7 +18,8 @@ export class Game {
 
         while (this.finished === false) {
             this.board.display();
-            this.currentPlayer.takeTurn(this.board);
+
+            this.executeTurn();
 
             if (this.board.won === true || this.board.allCellsOccupied === true) {
                 this.finished = true;
