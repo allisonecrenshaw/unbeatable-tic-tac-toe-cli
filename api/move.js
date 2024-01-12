@@ -1,7 +1,6 @@
 export class Move {
-    constructor(player, coordinate, board) {
-        this.player = player;
-        this.coordinate = coordinate;
-        this.board = board;
-    }
+  constructor(player, coordinate) {
+    this.player = player;
+    this.coordinate = coordinate;
+  }
 }
