@@ -1,7 +1,7 @@
 export class Coordinate {
   constructor(coordinate) {
     if (coordinate.length !== 2) {
-      throw new Error(
+      throw new CoordinateError(
         'Invalid coordinate: coordinate should only have two characters (ex: A1)',
       );
     }
@@ -15,11 +15,11 @@ export class Coordinate {
 
   validateCoordinate(x, y) {
     if (!this.isXValid(x)) {
-      throw new Error('Invalid coordinate: x value invalid.');
+      throw new CoordinateError('Invalid coordinate: x value invalid.');
     }
 
     if (!this.isYValid(y)) {
-      throw new Error('Invalid coordinate: y value invalid.');
+      throw new CoordinateError('Invalid coordinate: y value invalid.');
     }
   }
 
@@ -59,5 +59,12 @@ export class Coordinate {
     } else {
       throw new Error('Invalid coordinate: y value invalid.');
     }
+  }
+}
+
+export class CoordinateError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'CoordinateError';
   }
 }
