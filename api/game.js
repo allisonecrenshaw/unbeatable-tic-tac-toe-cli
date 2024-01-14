@@ -1,8 +1,10 @@
 import { Board } from './board.js';
-import { Coordinate } from './coordinate.js';
+import { Coordinate, CoordinateError } from './coordinate.js';
 import { Move } from './move.js';
 import * as utilities from './utilities.js';
 import * as readlineSync from 'readline-sync';
+
+const MAX_MOVE_ATTEMPTS = 3;
 
 export class Game {
   constructor(playerMode, player1, player2) {
@@ -45,21 +47,51 @@ export class Game {
 
   executeTurn() {
     console.log(`It is ${this.currentPlayer.name}'s turn.`);
-
-    let coordinate = new Coordinate(this.getValidCoordinate());
-
-    if (this.board.cellIsEmpty(coordinate) === false) {
-      console.log(`Move is invalid. Try again.`);
-    } else {
-      let move = new Move(this.currentPlayer, coordinate);
-      this.board.update(move);
-    }
+    let move = this.getValidMove();
   }
 
-  promptAndGetCoordinateInput() {
-    return readlineSync.question(
-      '\nPlease enter the coordinate for your move (ex: A1): ',
-    );
+  getValidMove() {
+    let moveAttempts = 0;
+    let moveIsValid = false;
+    let coordinateInput;
+    let coordinate = null;
+
+    while (moveAttempts < MAX_MOVE_ATTEMPTS && moveIsValid === false) {
+      coordinateInput = readlineSync.question(
+        `\nPlease enter the coordinate for your move (ex: A1):`,
+      );
+
+      try {
+        coordinate = new Coordinate(coordinateInput);
+      } catch (error) {
+        if (error instanceof CoordinateError) {
+          console.error(error.message);
+        } else {
+          console.error(
+            'An unexpected error occurred with the coordinate entry.',
+          );
+        }
+      }
+
+      if (coordinate) {
+        moveIsValid = this.board.cellIsEmpty(coordinate);
+        if (moveIsValid === false) {
+          console.log(
+            `${coordinateInput} is already occupied. Try entering a different coordinate.`,
+          );
+        } else {
+          return new Move(this.currentPlayer, coordinate);
+        }
+      } else {
+        console.log(`${coordinateInput} is not a valid coordinate. Try again.`);
+      }
+
+      moveAttempts++;
+      if (moveAttempts === MAX_MOVE_ATTEMPTS) {
+        console.log(`Max move attempts reached. Closing game now.`);
+        process.exit(1);
+      }
+    }
   }
 
   switchPlayer() {
