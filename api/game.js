@@ -51,46 +51,46 @@ export class Game {
   }
 
   getValidMove() {
-    let moveAttempts = 0;
-    let moveIsValid = false;
-    let coordinateInput;
-    let coordinate = null;
-
-    while (moveAttempts < MAX_MOVE_ATTEMPTS && moveIsValid === false) {
-      coordinateInput = readlineSync.question(
-        `\nPlease enter the coordinate for your move (ex: A1):`,
+    for (
+      let moveAttempts = 0;
+      moveAttempts < MAX_MOVE_ATTEMPTS;
+      moveAttempts++
+    ) {
+      const coordinateInput = readlineSync.question(
+        `\nPlease enter the coordinate for your move (ex: A1): `,
       );
 
       try {
-        coordinate = new Coordinate(coordinateInput);
-      } catch (error) {
-        if (error instanceof CoordinateError) {
-          console.error(error.message);
-        } else {
-          console.error(
-            'An unexpected error occurred with the coordinate entry.',
-          );
-        }
-      }
+        const coordinate = new Coordinate(coordinateInput);
 
-      if (coordinate) {
-        moveIsValid = this.board.cellIsEmpty(coordinate);
-        if (moveIsValid === false) {
-          console.log(
-            `${coordinateInput} is already occupied. Try entering a different coordinate.`,
-          );
-        } else {
+        if (coordinate) {
+          const moveIsValid = this.validateMove(coordinate);
+        }
+
+        if (moveIsValid === true) {
           return new Move(this.currentPlayer, coordinate);
+        } else {
+          console.log(`${coordinate} is already occupied.`);
         }
-      } else {
-        console.log(`${coordinateInput} is not a valid coordinate. Try again.`);
+      } catch (error) {
+        console.error(this.getErrorMessage(error));
+        console.log(`Please try again.`);
       }
+    }
 
-      moveAttempts++;
-      if (moveAttempts === MAX_MOVE_ATTEMPTS) {
-        console.log(`Max move attempts reached. Closing game now.`);
-        process.exit(1);
-      }
+    console.log(`\nMax move attempts reached. Closing game now.`);
+    process.exit(1);
+  }
+
+  validateMove(coordinate) {
+    return this.board.cellIsEmpty(coordinate);
+  }
+
+  getErrorMessage(error) {
+    if (error instanceof CoordinateError) {
+      return error.message;
+    } else {
+      return 'An unexpected error occurred with the coordinate entry.';
     }
   }
 
