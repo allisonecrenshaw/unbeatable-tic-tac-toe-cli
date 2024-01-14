@@ -1,4 +1,4 @@
-import { Game } from "./game.js";
+import { Game } from './game.js';
 
 describe('Game', () => {
   test('should switch player from player1 to player2', () => {
@@ -29,5 +29,4 @@ describe('Game', () => {
     // Assert
     expect(result).toBe(game.player1);
   });
-
 });

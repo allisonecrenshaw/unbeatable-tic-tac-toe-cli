@@ -1,5 +1,5 @@
-import { Game } from "./game.js";
-import * as utilities from "./utilities.js";
+import { Game } from './game.js';
+import * as utilities from './utilities.js';
 
 let gameMode = utilities.displayWelcomeAndGetGameMode();
 
