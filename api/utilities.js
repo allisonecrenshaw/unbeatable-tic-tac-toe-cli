@@ -1,18 +1,6 @@
 import * as readlineSync from 'readline-sync';
 import { Player } from './player.js';
 
-export function displayWelcomeAndGetGameMode() {
-  displayWelcomeMessage();
-
-  displayGameModeOptions();
-
-  var gameMode = getGameMode();
-
-  displayGameModeConfirmation(gameMode);
-
-  return gameMode;
-}
-
 export function displayWelcomeMessage() {
   var line = '**************************';
   console.log();
