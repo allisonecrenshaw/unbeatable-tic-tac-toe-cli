@@ -1,7 +1,7 @@
 import { Board } from './board.js';
 import { Coordinate } from './coordinate.js';
 import { Move } from './move.js';
-
+import * as utilities from './utilities.js';
 import * as readlineSync from 'readline-sync';
 
 export class Game {
@@ -16,7 +16,7 @@ export class Game {
   }
 
   play() {
-    console.log("\nLet's play!");
+    this.displayGameStartMessage();
 
     this.board.initialize();
 
@@ -33,6 +33,14 @@ export class Game {
         this.currentPlayer = this.switchPlayer();
       }
     }
+  }
+
+  displayGameStartMessage() {
+    let starLine = '***************';
+    console.log();
+    console.log(starLine);
+    console.log(`Let's play!`);
+    console.log(starLine);
   }
 
   executeTurn() {
