@@ -1,7 +1,3 @@
-import { Move } from './move.js';
-import { Coordinate } from './coordinate.js';
-import * as readlineSync from 'readline-sync';
-
 export class Player {
   constructor(turnOrder, isAI, name) {
     this.turnOrder = turnOrder;
