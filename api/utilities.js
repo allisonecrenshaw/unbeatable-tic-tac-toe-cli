@@ -1,5 +1,6 @@
 import * as readlineSync from 'readline-sync';
 import { Player } from './player.js';
+import * as constants from './constants.js';
 
 export function displayWelcomeMessage() {
   var line = '**************************';
@@ -14,20 +15,24 @@ export function displayGameModeOptions() {
 }
 
 export function getGameMode() {
-  const gameMode = readlineSync.question(
-    "\nPlease enter your preferred game mode (type 'computer' or 'friend'): ",
-  );
-  return gameMode;
+  const gameModeInput = getGameModeInput();
+  if (
+    gameModeInput === constants.FRIEND_MODE ||
+    gameModeInput === constants.COMPUTER_MODE
+  ) {
+    console.log(`\nYou have chosen to play in ${gameModeInput} mode.`);
+    return gameModeInput;
+  }
+
+  console.log(`You have entered an invalid game mode.`);
+  console.log(`Defaulting to ${constants.DEFAULT_GAME_MODE} mode.`);
+  return constants.DEFAULT_GAME_MODE;
 }
 
-export function displayGameModeConfirmation(gameMode) {
-  if (gameMode == 'friend' || gameMode == 'computer') {
-    console.log(`\nYou have chosen to play in ${gameMode} mode.`);
-  } else {
-    console.log(`\n${gameMode} is not a valid game mode.`);
-    console.log(`\nClosing the game. Goodbye`);
-    process.exit(1);
-  }
+export function getGameModeInput() {
+  return readlineSync.question(
+    `\nPlease enter your preferred game mode (type ${constants.FRIEND_MODE} or ${constants.COMPUTER_MODE}): `,
+  );
 }
 
 export function createPlayer1() {
@@ -41,25 +46,25 @@ export function createPlayer1() {
 export function createPlayer2(gameMode, player1Name) {
   let player2;
 
-  if (gameMode === 'friend') {
-    let player2Name = '';
-    player2Name = readlineSync.question(`\nEnter a name for Player 2: `);
-    while (arePlayerNamesSame(player1Name, player2Name)) {
-      if (arePlayerNamesSame(player1Name, player2Name)) {
-        console.log(`Player 1 already has name ${player2Name}.`);
-        console.log(`Please enter a different name.`);
-      }
-      player2Name = readlineSync.question(`\nEnter a name for Player 2: `);
-    }
-    player2 = new Player(2, false, player2Name);
-  } else if (gameMode == 'computer') {
-    player2 = new Player(2, true);
-  } else {
-    console.log('Invalid game mode. Closing the game.');
-    process.exit(1);
+  if (gameMode === constants.COMPUTER_MODE) {
+    return new Player(2, true);
   }
 
-  return player2;
+  let player2Name = '';
+  let inputAttempts = 0;
+  for (
+    let moveAttempts = 0;
+    moveAttempts < constants.MAX_INPUT_ATTEMPTS;
+    moveAttempts++
+  ) {
+    player2Name = readlineSync.question(`\nEnter a name for Player 2: `);
+    if (arePlayerNamesSame(player1Name, player2Name) === true) {
+      console.log(
+        `Error: Input name for player 2 is same as player 1. Try again.`,
+      );
+    }
+    return new Player(2, false, player2Name);
+  }
 }
 
 export function arePlayerNamesSame(player1Name, player2Name) {
