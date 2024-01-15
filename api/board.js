@@ -101,8 +101,8 @@ export class Board {
       ) {
         return this.cells[rowIndex][0];
       }
-      return null;
     }
+    return null;
   }
 
   getWinningColumnSymbol() {
