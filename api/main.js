@@ -11,10 +11,11 @@ let gameMode = utilities.getGameMode();
 
 let player1 = utilities.createPlayer1();
 
+let player2;
 if (gameMode === constants.COMPUTER_MODE) {
-  let player2 = new AIPlayer();
+  player2 = new AIPlayer(2);
 } else {
-  let player2 = utilities.createPlayer2(gameMode, player1.name);
+  player2 = utilities.createPlayer2(gameMode, player1.name);
 }
 
 const game = new Game(gameMode, player1, player2);
