@@ -1,6 +1,7 @@
 import { Player } from './player.js';
 import { Coordinate } from './coordinate.js';
 import * as constants from './constants.js';
+import * as minimax from './minimax.js';
 
 export class AIPlayer extends Player {
   constructor(turnOrder) {
