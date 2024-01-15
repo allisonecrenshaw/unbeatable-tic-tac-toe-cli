@@ -47,10 +47,18 @@ export class Game {
 
   executeTurn() {
     console.log(`It is ${this.currentPlayer.name}'s turn.`);
-    let move = this.getValidMove();
+    let move = this.getMove();
+    this.board.placeSymbol(move);
   }
 
-  getValidMove() {
+  getMove() {
+    if (this.currentPlayer.isAI === false) {
+      return this.getValidMoveFromUser();
+    }
+    console.log(`Getting AI move.`);
+  }
+
+  getValidMoveFromUser() {
     for (
       let moveAttempts = 0;
       moveAttempts < MAX_MOVE_ATTEMPTS;
@@ -61,10 +69,11 @@ export class Game {
       );
 
       try {
-        const coordinate = new Coordinate(coordinateInput);
+        const coordinate = new Coordinate(coordinateInput, 'alphanumeric');
 
+        let moveIsValid;
         if (coordinate) {
-          const moveIsValid = this.validateMove(coordinate);
+          moveIsValid = this.validateMove(coordinate);
         }
 
         if (moveIsValid === true) {
@@ -90,6 +99,7 @@ export class Game {
     if (error instanceof CoordinateError) {
       return error.message;
     } else {
+      console.log(error);
       return 'An unexpected error occurred with the coordinate entry.';
     }
   }
