@@ -1,19 +1,24 @@
 export class Coordinate {
-  constructor(coordinateInput, coordinateType) {
-    if (coordinateInput.length !== 2) {
-      throw new CoordinateError(
-        'Invalid Coordinate: Coordinate should only have two characters (ex: A1)',
-      );
-    }
-
-    const [x, y] = coordinateInput.split('');
-
+  constructor(coordinateType, coordinateInput) {
     if (coordinateType === 'alphanumeric') {
-      this.x = this.transformXCoordinateIntoIndex(x);
-      this.y = this.transformYCoordinateIntoIndex(y);
+      if (coordinateInput.length !== 2) {
+        throw new CoordinateError(
+          'Invalid Coordinate: Coordinate should only have two characters (ex: A1)',
+        );
+      } else {
+        const [x, y] = coordinateInput.split('');
+
+        if (coordinateType === 'alphanumeric') {
+          this.x = this.transformXCoordinateIntoIndex(x);
+          this.y = this.transformYCoordinateIntoIndex(y);
+        } else {
+          this.x = x;
+          this.y = y;
+        }
+      }
     } else {
-      this.x = x;
-      this.y = y;
+      this.x = coordinateInput[0];
+      this.y = coordinateInput[1];
     }
   }
 

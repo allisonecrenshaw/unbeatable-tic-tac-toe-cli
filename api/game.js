@@ -54,7 +54,10 @@ export class Game {
     if (this.currentPlayer.isAI === false) {
       return this.getValidMoveFromUser();
     }
-    return this.player2.generateMove();
+    return new Move(
+      this.currentPlayer,
+      this.currentPlayer.selectCoordinate(this.board),
+    );
   }
 
   getValidMoveFromUser() {
@@ -68,7 +71,7 @@ export class Game {
       );
 
       try {
-        const coordinate = new Coordinate(coordinateInput, 'alphanumeric');
+        const coordinate = new Coordinate('alphanumeric', coordinateInput);
 
         let moveIsValid;
         if (coordinate) {
