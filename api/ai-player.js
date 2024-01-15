@@ -41,7 +41,7 @@ export class AIPlayer extends Player {
     for (
       let coordinateIndex = 0;
       coordinateIndex < coordinates.length;
-      coordinateIndex
+      coordinateIndex++
     ) {
       thisCoordinate = coordinates[coordinateIndex];
       if (
