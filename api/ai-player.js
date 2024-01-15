@@ -8,12 +8,12 @@ export class AIPlayer extends Player {
   }
 
   selectCoordinate(board) {
-    let unoccupiedCoordinates = this.getUnoccupiedCellCoordinates(board);
-    let bestCoordinate = unoccupiedCoordinates[0];
-    return bestCoordinate;
+    let unoccupiedCoordinates = this.getUnoccupiedCoordinates(board);
+    let optimalCoordinate = selectOptimalCoordinate(unoccupiedCoordinates);
+    return optimalCoordinate;
   }
 
-  getUnoccupiedCellCoordinates(board) {
+  getUnoccupiedCoordinates(board) {
     let unoccupiedCoordinates = [];
 
     console.log(`Getting available coordinates.`);
@@ -32,5 +32,31 @@ export class AIPlayer extends Player {
     }
 
     return unoccupiedCoordinates;
+  }
+
+  selectOptimalCoordinate(coordinates) {
+    let optimalCoordinate = coordinates[0];
+    let thisCoordinate = coordinates[0];
+
+    for (
+      let coordinateIndex = 0;
+      coordinateIndex < coordinates.length;
+      coordinateIndex
+    ) {
+      thisCoordinate = coordinates[coordinateIndex];
+      if (
+        currentBetterThanPrevious(thisCoordinate, optimalCoordinate) === true
+      ) {
+        optimalCoordinate = thisCoordinate;
+      }
+    }
+    return optimalCoordinate;
+  }
+
+  currentBetterThanPrevious(thisCoordinate, optimalCoordinate) {
+    let currentBetterThanPrevious = false;
+    console.log(`Will test here for best coordinate.`);
+
+    return currentBetterThanPrevious;
   }
 }
