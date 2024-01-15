@@ -12,12 +12,7 @@ export class Player {
     }
 
     this.isAI = isAI;
-
-    if (isAI == true) {
-      this.name = 'The Computer';
-    } else {
-      this.name = name ?? `Player ${turnOrder}`;
-    }
+    this.name = name ?? `Player ${turnOrder}`;
   }
 
   toString() {
