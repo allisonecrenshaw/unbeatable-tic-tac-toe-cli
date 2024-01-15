@@ -4,8 +4,8 @@ export const FRIEND_MODE = 'friend';
 export const DEFAULT_GAME_MODE = FRIEND_MODE;
 
 // Board Constants
-export const numOfRows = 3;
-export const numOfColumns = 3;
+export const NUM_OF_ROWS = 3;
+export const NUM_OF_COLUMNS = 3;
 
 // Other
 export const MAX_INPUT_ATTEMPTS = 3;
