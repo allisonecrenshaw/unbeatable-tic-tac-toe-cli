@@ -38,8 +38,7 @@ export class Board {
     this.cells[move.coordinate.x][move.coordinate.y] = move.player.symbol;
   }
 
-  update(move) {
-    this.updateCells(move);
+  updateBoardStates() {
     this.setAllCellsOccupied();
     this.updateWinState();
   }

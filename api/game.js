@@ -1,10 +1,8 @@
 import { Board } from './board.js';
 import { Coordinate, CoordinateError } from './coordinate.js';
 import { Move } from './move.js';
-import * as utilities from './utilities.js';
+import * as constants from './constants.js';
 import * as readlineSync from 'readline-sync';
-
-const MAX_MOVE_ATTEMPTS = 3;
 
 export class Game {
   constructor(playerMode, player1, player2) {
@@ -49,6 +47,7 @@ export class Game {
     console.log(`It is ${this.currentPlayer.name}'s turn.`);
     let move = this.getMove();
     this.board.placeSymbol(move);
+    this.board.updateBoardStates();
   }
 
   getMove() {
@@ -61,7 +60,7 @@ export class Game {
   getValidMoveFromUser() {
     for (
       let moveAttempts = 0;
-      moveAttempts < MAX_MOVE_ATTEMPTS;
+      moveAttempts < constants.MAX_INPUT_ATTEMPTS;
       moveAttempts++
     ) {
       const coordinateInput = readlineSync.question(
