@@ -54,7 +54,7 @@ export class Game {
     if (this.currentPlayer.isAI === false) {
       return this.getValidMoveFromUser();
     }
-    console.log(`Getting AI move.`);
+    return this.player2.generateMove();
   }
 
   getValidMoveFromUser() {
