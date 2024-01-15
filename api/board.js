@@ -34,17 +34,14 @@ export class Board {
     console.log(line);
   }
 
+  placeSymbol(move) {
+    this.cells[move.coordinate.x][move.coordinate.y] = move.player.symbol;
+  }
+
   update(move) {
     this.updateCells(move);
     this.setAllCellsOccupied();
     this.updateWinState();
-  }
-
-  updateCells(move) {
-    let x = move.coordinate.x;
-    let y = move.coordinate.y;
-
-    this.cells[x][y] = move.player.symbol;
   }
 
   setAllCellsOccupied() {
