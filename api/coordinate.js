@@ -1,51 +1,31 @@
 export class Coordinate {
-  constructor(coordinate) {
-    if (coordinate.length !== 2) {
+  constructor(coordinateInput, coordinateType) {
+    if (coordinateInput.length !== 2) {
       throw new CoordinateError(
-        'Invalid coordinate: coordinate should only have two characters (ex: A1)',
+        'Invalid Coordinate: Coordinate should only have two characters (ex: A1)',
       );
     }
 
-    const [x, y] = coordinate.split('');
-    this.validateCoordinate(x, y);
+    const [x, y] = coordinateInput.split('');
 
-    this.x = this.transformXCoordinateIntoIndex(x);
-    this.y = this.transformYCoordinateIntoIndex(y);
-  }
-
-  validateCoordinate(x, y) {
-    if (!this.isXValid(x)) {
-      throw new CoordinateError('Invalid coordinate: x value invalid.');
-    }
-
-    if (!this.isYValid(y)) {
-      throw new CoordinateError('Invalid coordinate: y value invalid.');
+    if (coordinateType === 'alphanumeric') {
+      this.x = this.transformXCoordinateIntoIndex(x);
+      this.y = this.transformYCoordinateIntoIndex(y);
+    } else {
+      this.x = x;
+      this.y = y;
     }
   }
 
-  isXValid(x) {
-    if (x == 'A' || x == 'B' || x == 'C') {
-      return true;
-    }
-    return false;
-  }
-
-  isYValid(y) {
-    if (y == '1' || y == '2' || y == '3') {
-      return true;
-    }
-    return false;
-  }
-
-  transformXCoordinateIntoIndex(coordinate) {
-    if (coordinate == 'A') {
+  transformXCoordinateIntoIndex(x) {
+    if (x == 'A') {
       return 0;
-    } else if (coordinate == 'B') {
+    } else if (x == 'B') {
       return 1;
-    } else if (coordinate == 'C') {
+    } else if (x == 'C') {
       return 2;
     } else {
-      throw new Error('Invalid coordinate: x value invalid.');
+      throw new CoordinateError('Invalid Coordinate: x value invalid.');
     }
   }
 
@@ -57,7 +37,7 @@ export class Coordinate {
     } else if (coordinate == '3') {
       return 2;
     } else {
-      throw new Error('Invalid coordinate: y value invalid.');
+      throw new CoordinateError('Invalid Coordinate: y value invalid.');
     }
   }
 }
