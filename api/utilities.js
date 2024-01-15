@@ -44,14 +44,8 @@ export function createPlayer1() {
 }
 
 export function createPlayer2(gameMode, player1Name) {
-  let player2;
-
-  if (gameMode === constants.COMPUTER_MODE) {
-    return new Player(2, true);
-  }
-
   let player2Name = '';
-  let inputAttempts = 0;
+
   for (
     let moveAttempts = 0;
     moveAttempts < constants.MAX_INPUT_ATTEMPTS;
