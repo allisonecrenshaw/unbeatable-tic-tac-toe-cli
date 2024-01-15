@@ -78,7 +78,7 @@ export class Game {
         if (moveIsValid === true) {
           return new Move(this.currentPlayer, coordinate);
         } else {
-          console.log(`${coordinate} is already occupied.`);
+          console.log(`${coordinate.x}${coordinate.y} is already occupied.`);
         }
       } catch (error) {
         console.error(this.getErrorMessage(error));
