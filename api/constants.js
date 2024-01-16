@@ -1,7 +1,7 @@
 // Game Modes
 export const COMPUTER_MODE = 'computer';
 export const FRIEND_MODE = 'friend';
-export const DEFAULT_GAME_MODE = FRIEND_MODE;
+export const DEFAULT_GAME_MODE = COMPUTER_MODE;
 
 // Board Constants
 export const NUM_OF_ROWS = 3;
