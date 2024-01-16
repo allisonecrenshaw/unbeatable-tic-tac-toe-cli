@@ -20,7 +20,7 @@ export class AIPlayer extends Player {
   getAvailableCoordinates(board) {
     let availableCoordinates = [];
 
-    console.log(`Getting available coordinates.`);
+    console.log(`Computer gathering available coordinates.`);
     for (let rowIndex = 0; rowIndex < constants.NUM_OF_ROWS; rowIndex++) {
       for (
         let columnIndex = 0;
