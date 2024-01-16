@@ -2,15 +2,16 @@ import { Board } from './board.js';
 import { Coordinate, CoordinateError } from './coordinate.js';
 import { Move } from './move.js';
 import * as constants from './constants.js';
+import * as utilities from './utilities.js';
 import * as readlineSync from 'readline-sync';
 
 export class Game {
-  constructor(playerMode, player1, player2) {
+  constructor(gameMode, player1, player2) {
     this.board = new Board();
     this.player1 = player1;
     this.player2 = player2;
     this.currentPlayer = player1;
-    this.playerMode = playerMode;
+    this.gameMode = gameMode;
     this.finished = false;
     this.winningPlayer = null;
   }
@@ -56,7 +57,7 @@ export class Game {
 
     return new Move(
       this.currentPlayer,
-      this.currentPlayer.selectCoordinate(deepCopy(this.board)),
+      this.currentPlayer.getAIChosenCoordinate(utilities.deepCopy(this)),
     );
   }
 

@@ -9,13 +9,16 @@ export class AIPlayer extends Player {
     this.minimaxSolver = new minimax.Minimax();
   }
 
-  selectCoordinate(board) {
-    let potentialMoves = this.getUnoccupiedCoordinates(board);
-    return this.minimaxSolver.findBestMove(potentialMoves, board);
+  getAIChosenCoordinate(gameCopy) {
+    let availableCoordinates = this.getAvailableCoordinates(gameCopy.board);
+    return this.minimaxSolver.findCoordinateForBestMove(
+      availableCoordinates,
+      gameCopy,
+    );
   }
 
-  getUnoccupiedCoordinates(board) {
-    let unoccupiedCoordinates = [];
+  getAvailableCoordinates(board) {
+    let availableCoordinates = [];
 
     console.log(`Getting available coordinates.`);
     for (let rowIndex = 0; rowIndex < constants.NUM_OF_ROWS; rowIndex++) {
@@ -27,11 +30,11 @@ export class AIPlayer extends Player {
         if (board.cells[rowIndex][columnIndex] === ' ') {
           let coordinateArray = [rowIndex, columnIndex];
           let coordinate = new Coordinate('array', coordinateArray);
-          unoccupiedCoordinates.push(coordinate);
+          availableCoordinates.push(coordinate);
         }
       }
     }
 
-    return unoccupiedCoordinates;
+    return availableCoordinates;
   }
 }

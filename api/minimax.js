@@ -1,21 +1,26 @@
+import { SimulatedGame } from './simulated-game.js';
+
 export class Minimax {
-  findBestCoordinate(potentialCoordinates, startingBoard) {
-    let bestCoordinate = potentialCoordinates[0];
-    let thisCoordinate = potentialCoordinates[0];
+  findCoordinateForBestMove(availableCoordinates, gameCopy) {
+    let bestCoordinate = availableCoordinates[0];
+    let thisCoordinate = availableCoordinates[0];
 
     for (
-      let potentialCoordinatesIndex = 0;
-      potentialCoordinatesIndex < potentialCoordinates.length;
-      potentialCoordinatesIndex++
+      let availableCoordinatesIndex = 0;
+      availableCoordinatesIndex < availableCoordinates.length;
+      availableCoordinatesIndex++
     ) {
-      thisCoordinate = potentialCoordinates[potentialCoordinatesIndex];
-      let potentialOutcomes = gatherPotentialOutcomes(
+      thisCoordinate = availableCoordinates[availableCoordinatesIndex];
+      let potentialOutcomes = this.simulatePotentialOutcomes(
         thisCoordinate,
-        startingBoard,
+        gameCopy,
       );
     }
     return bestCoordinate;
   }
 
-  gatherPotentialOutcomes(thisCoordinate, startingBoard) {}
+  simulatePotentialOutcomes(thisCoordinate, gameCopy) {
+    let rootSimulatedGame = new SimulatedGame(gameCopy);
+    console.log(rootSimulatedGame);
+  }
 }
