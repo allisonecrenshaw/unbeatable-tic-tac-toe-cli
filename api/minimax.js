@@ -1,5 +1,5 @@
-import { SimulatedGame } from './simulated-game.js';
 import { Move } from './move.js';
+import { SimulatedGame } from './simulated-game.js';
 
 export class Minimax {
   findCoordinateForBestMove(availableCoordinates, gameCopy) {
@@ -18,13 +18,23 @@ export class Minimax {
         thisCoordinate,
         simulatedGame,
       );
+
+      if (potentialOutcomes[0] === 'immediateWin') {
+        return thisCoordinate;
+      }
     }
     return bestCoordinate;
   }
 
   simulatePotentialOutcomes(thisCoordinate, simulatedGame) {
+    let potentialOutcomes = [];
     let firstMove = new Move(simulatedGame.currentPlayer, thisCoordinate);
     simulatedGame.executeMove(firstMove);
-    simulatedGame.board.displayBoard();
+    if (simulatedGame.board.won === true) {
+      potentialOutcomes.push('immediateWin');
+      return potentialOutcomes;
+    }
+
+    return potentialOutcomes;
   }
 }

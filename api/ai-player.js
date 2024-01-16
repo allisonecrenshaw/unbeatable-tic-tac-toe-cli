@@ -1,5 +1,6 @@
 import { Player } from './player.js';
 import { Coordinate } from './coordinate.js';
+import { SimulatedGame } from './simulated-game.js';
 import * as constants from './constants.js';
 import * as minimax from './minimax.js';
 
@@ -11,6 +12,7 @@ export class AIPlayer extends Player {
 
   getAIChosenCoordinate(gameCopy) {
     let availableCoordinates = this.getAvailableCoordinates(gameCopy.board);
+
     return this.minimaxSolver.findCoordinateForBestMove(
       availableCoordinates,
       gameCopy,

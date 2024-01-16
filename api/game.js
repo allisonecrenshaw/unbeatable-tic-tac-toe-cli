@@ -2,8 +2,8 @@ import { Board } from './board.js';
 import { Coordinate, CoordinateError } from './coordinate.js';
 import { Move } from './move.js';
 import * as constants from './constants.js';
-import * as utilities from './utilities.js';
 import * as readlineSync from 'readline-sync';
+import _ from 'lodash';
 
 export class Game {
   constructor(gameMode, player1, player2) {
@@ -57,7 +57,7 @@ export class Game {
 
     return new Move(
       this.currentPlayer,
-      this.currentPlayer.getAIChosenCoordinate(utilities.deepCopy(this)),
+      this.currentPlayer.getAIChosenCoordinate(_.cloneDeep(this)),
     );
   }
 
