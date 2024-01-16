@@ -46,17 +46,17 @@ export class Game {
   executeTurn() {
     console.log(`It is ${this.currentPlayer.name}'s turn.`);
     let move = this.getMove();
-    this.board.placeSymbol(move);
-    this.board.updateBoardStates();
+    executeMove(move);
   }
 
   getMove() {
     if (this.currentPlayer.isAI === false) {
       return this.getValidMoveFromUser();
     }
+
     return new Move(
       this.currentPlayer,
-      this.currentPlayer.selectCoordinate(this.board),
+      this.currentPlayer.selectCoordinate(deepCopy(this.board)),
     );
   }
 
@@ -104,6 +104,11 @@ export class Game {
       console.log(error);
       return 'An unexpected error occurred with the coordinate entry.';
     }
+  }
+
+  executeMove(move) {
+    this.board.placeSymbol(move);
+    this.board.updateBoardStates();
   }
 
   switchPlayer() {
