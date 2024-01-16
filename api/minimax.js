@@ -1,25 +1,21 @@
 export class Minimax {
-  findBestMove(potentialMoves, startingBoard) {
-    let bestMove = potentialMoves[0];
-    let thisMove = potentialMoves[0];
+  findBestCoordinate(potentialCoordinates, startingBoard) {
+    let bestCoordinate = potentialCoordinates[0];
+    let thisCoordinate = potentialCoordinates[0];
 
     for (
-      let potentialMovesIndex = 0;
-      potentialMovesIndex < potentialMoves.length;
-      potentialMovesIndex++
+      let potentialCoordinatesIndex = 0;
+      potentialCoordinatesIndex < potentialCoordinates.length;
+      potentialCoordinatesIndex++
     ) {
-      thisMove = potentialMoves[potentialMovesIndex];
-      if (this.currentBetterThanPrevious(thisMove, bestMove) === true) {
-        bestMove = thisMove;
-      }
+      thisCoordinate = potentialCoordinates[potentialCoordinatesIndex];
+      let potentialOutcomes = gatherPotentialOutcomes(
+        thisCoordinate,
+        startingBoard,
+      );
     }
-    return bestMove;
+    return bestCoordinate;
   }
 
-  currentBetterThanPrevious(thisMove, previousBestMove) {
-    let currentBetterThanPrevious = false;
-    console.log(`Will test here for best coordinate.`);
-
-    return currentBetterThanPrevious;
-  }
+  gatherPotentialOutcomes(thisCoordinate, startingBoard) {}
 }
