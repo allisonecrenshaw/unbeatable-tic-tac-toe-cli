@@ -12,7 +12,7 @@ export class Player {
     }
 
     this.isAI = isAI;
-    this.name = name ?? `Player ${turnOrder}`;
+    this.name = name !== '' ? name : `Player ${turnOrder}`;
   }
 
   toString() {
