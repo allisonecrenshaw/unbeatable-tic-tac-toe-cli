@@ -2,39 +2,33 @@ import { Move } from './move.js';
 import { SimulatedGame } from './simulated-game.js';
 
 export class Minimax {
-  findCoordinateForBestMove(availableCoordinates, gameCopy) {
-    let simulatedGame = new SimulatedGame(gameCopy);
+  findCoordinateForBestMove(availableCoords, gameCopy) {
+    let simGame = new SimulatedGame(gameCopy);
 
-    let bestCoordinate = availableCoordinates[0];
-    let thisCoordinate = availableCoordinates[0];
+    let bestCoordinate = availableCoords[0];
+    let thisCoordinate = availableCoords[0];
 
-    for (
-      let availableCoordinatesIndex = 0;
-      availableCoordinatesIndex < availableCoordinates.length;
-      availableCoordinatesIndex++
-    ) {
-      thisCoordinate = availableCoordinates[availableCoordinatesIndex];
-      let potentialOutcomes = this.simulatePotentialOutcomes(
-        thisCoordinate,
-        simulatedGame,
-      );
-
-      if (potentialOutcomes[0] === 'immediateWin') {
+    for (let i = 0; i < availableCoords.length; i++) {
+      thisCoordinate = availableCoords[i];
+      if (this.isImmediateWin(thisCoordinate, simGame) === true) {
         return thisCoordinate;
       }
+      let outcomes = this.simulatePotentialOutcomes(thisCoordinate, simGame);
     }
     return bestCoordinate;
   }
 
-  simulatePotentialOutcomes(thisCoordinate, simulatedGame) {
-    let potentialOutcomes = [];
-    let firstMove = new Move(simulatedGame.currentPlayer, thisCoordinate);
-    simulatedGame.executeMove(firstMove);
-    if (simulatedGame.board.won === true) {
-      potentialOutcomes.push('immediateWin');
-      return potentialOutcomes;
+  isImmediateWin(thisCoordinate, simGame) {
+    simGame.executeMove(new Move(simGame.currentPlayer, thisCoordinate));
+    if (simGame.board.won === true) {
+      return true;
     }
+    simGame.board.resetCell(thisCoordinate);
+    return false;
+  }
 
+  simulatePotentialOutcomes(thisCoordinate, simGame) {
+    let potentialOutcomes = [];
     return potentialOutcomes;
   }
 }
