@@ -10,8 +10,8 @@ export class AIPlayer extends Player {
   }
 
   selectCoordinate(board) {
-    let unoccupiedCoordinates = this.getUnoccupiedCoordinates(board);
-    return this.minimaxSolver.findBestCoordinate(unoccupiedCoordinates, board);
+    let potentialMoves = this.getUnoccupiedCoordinates(board);
+    return this.minimaxSolver.findBestMove(potentialMoves, board);
   }
 
   getUnoccupiedCoordinates(board) {
