@@ -46,7 +46,7 @@ export class Game {
   executeTurn() {
     console.log(`It is ${this.currentPlayer.name}'s turn.`);
     let move = this.getMove();
-    executeMove(move);
+    this.executeMove(move);
   }
 
   getMove() {
