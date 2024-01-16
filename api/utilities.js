@@ -65,6 +65,6 @@ export function arePlayerNamesSame(player1Name, player2Name) {
   return player1Name === player2Name ? true : false;
 }
 
-function deepCopy(original) {
+export function deepCopy(original) {
   return JSON.parse(JSON.stringify(original));
 }
