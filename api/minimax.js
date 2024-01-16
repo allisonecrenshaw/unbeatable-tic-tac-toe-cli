@@ -2,6 +2,8 @@ import { SimulatedGame } from './simulated-game.js';
 
 export class Minimax {
   findCoordinateForBestMove(availableCoordinates, gameCopy) {
+    let simulatedGame = new SimulatedGame(gameCopy);
+
     let bestCoordinate = availableCoordinates[0];
     let thisCoordinate = availableCoordinates[0];
 
@@ -13,14 +15,11 @@ export class Minimax {
       thisCoordinate = availableCoordinates[availableCoordinatesIndex];
       let potentialOutcomes = this.simulatePotentialOutcomes(
         thisCoordinate,
-        gameCopy,
+        simulatedGame,
       );
     }
     return bestCoordinate;
   }
 
-  simulatePotentialOutcomes(thisCoordinate, gameCopy) {
-    let rootSimulatedGame = new SimulatedGame(gameCopy);
-    console.log(rootSimulatedGame);
-  }
+  simulatePotentialOutcomes(thisCoordinate, simulatedGame) {}
 }
