@@ -64,7 +64,3 @@ export function createPlayer2(gameMode, player1Name) {
 export function arePlayerNamesSame(player1Name, player2Name) {
   return player1Name === player2Name ? true : false;
 }
-
-export function deepCopy(original) {
-  return JSON.parse(JSON.stringify(original));
-}
