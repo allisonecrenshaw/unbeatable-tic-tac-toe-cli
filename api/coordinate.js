@@ -7,14 +7,8 @@ export class Coordinate {
         );
       } else {
         const [x, y] = coordinateInput.split('');
-
-        if (coordinateType === 'alphanumeric') {
-          this.x = this.transformXCoordinateIntoIndex(x);
-          this.y = this.transformYCoordinateIntoIndex(y);
-        } else {
-          this.x = x;
-          this.y = y;
-        }
+        this.x = this.transformXCoordinateIntoIndex(x);
+        this.y = this.transformYCoordinateIntoIndex(y);
       }
     } else {
       this.x = coordinateInput[0];
