@@ -46,7 +46,7 @@ export class AIPlayer extends Player {
       return immediateWinCoordinate;
     }
 
-    if (gameCopy.board.cellIsEmpty(constants.CENTER_COORDINATE)) {
+    if (centerCoordinateIsAvailable(gameCopy.board)) {
       return constants.CENTER_COORDINATE;
     }
   }
@@ -62,5 +62,9 @@ export class AIPlayer extends Player {
       }
       simGame.board.resetCell(thisCoordinate);
     }
+  }
+
+  centerCoordinateIsAvailable(board) {
+    return board.cellIsEmpty(constants.CENTER_COORDINATE);
   }
 }
