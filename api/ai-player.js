@@ -40,22 +40,44 @@ export class AIPlayer extends Player {
     let immediateWinCoordinate = this.checkForImmediateWin(
       availableCoordinates,
       gameCopy,
+      gameCopy.currentPlayer,
     );
+
+    if (availableCoordinates.length >= 8) {
+      if (this.centerCoordinateIsAvailable(gameCopy.board)) {
+        return constants.CENTER;
+      }
+
+      let availableCorner = this.getAvailableCorner(gameCopy.board);
+      if (availableCorner) {
+        return availableCorner;
+      }
+    }
+
     if (immediateWinCoordinate) {
       console.log('immediate win evaluated to true');
       return immediateWinCoordinate;
     }
 
-    if (this.centerCoordinateIsAvailable(gameCopy.board)) {
-      return constants.CENTER_COORDINATE;
+    let opImmediateWinCoordinate = this.checkForImmediateWin(
+      availableCoordinates,
+      gameCopy,
+      gameCopy.player1,
+    );
+
+    if (opImmediateWinCoordinate) {
+      console.log('opponent immediate win is imminent. blocking.');
+      return opImmediateWinCoordinate;
     }
+
+    return this.getAdjacentCoordinate(gameCopy.board, availableCoordinates);
   }
 
-  checkForImmediateWin(availableCoordinates, gameCopy) {
+  checkForImmediateWin(availableCoordinates, gameCopy, player) {
     let simGame = new SimulatedGame(gameCopy);
     for (let i = 0; i < availableCoordinates.length; i++) {
       let thisCoordinate = availableCoordinates[i];
-      simGame.executeMove(new Move(simGame.currentPlayer, thisCoordinate));
+      simGame.executeMove(new Move(player, thisCoordinate));
 
       if (simGame.board.won === true) {
         return thisCoordinate;
@@ -65,6 +87,28 @@ export class AIPlayer extends Player {
   }
 
   centerCoordinateIsAvailable(board) {
-    return board.cellIsEmpty(constants.CENTER_COORDINATE);
+    return board.cellIsEmpty(constants.CENTER);
+  }
+
+  getAvailableCorner(board) {
+    switch (true) {
+      case board.cellIsEmpty(constants.TOP_LEFT_CORNER):
+        return constants.TOP_LEFT_CORNER;
+      case board.cellIsEmpty(constants.BOTTOM_LEFT_CORNER):
+        return constants.BOTTOM_LEFT_CORNER;
+      case board.cellIsEmpty(constants.TOP_RIGHT_CORNER):
+        return constants.TOP_RIGHT_CORNER;
+      case board.cellIsEmpty(constants.BOTTOM_RIGHT_CORNER):
+        return constants.BOTTOM_RIGHT_CORNER;
+      default:
+        return false;
+    }
+  }
+
+  getAdjacentCoordinate(board, availableCoordinates) {
+    let opponentMoves = getFilledCoordinatesBySymbol(gameCopy.board);
+    for (let i = 0; i < availableCoordinates.length; i++) {
+      let thisCoordinate = availableCoordinates[i];
+    }
   }
 }
