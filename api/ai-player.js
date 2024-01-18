@@ -46,7 +46,7 @@ export class AIPlayer extends Player {
       return immediateWinCoordinate;
     }
 
-    if (centerCoordinateIsAvailable(gameCopy.board)) {
+    if (this.centerCoordinateIsAvailable(gameCopy.board)) {
       return constants.CENTER_COORDINATE;
     }
   }
