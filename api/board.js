@@ -146,4 +146,8 @@ export class Board {
     }
     return false;
   }
+
+  getFilledCoordinatesBySymbol(symbol) {
+    let filledCoordinates = [];
+  }
 }
