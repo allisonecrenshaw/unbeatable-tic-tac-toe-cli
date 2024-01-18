@@ -70,7 +70,10 @@ export class AIPlayer extends Player {
       return opImmediateWinCoordinate;
     }
 
-    return this.getAdjacentCoordinate(gameCopy.board, availableCoordinates);
+    // check for crosshair and block if needed which leads to unwinnable scenario
+    // check for diagonal formation which leads to unwinnable scenario
+
+    return this.getAdjacentCoordinate(gameCopy, availableCoordinates);
   }
 
   checkForImmediateWin(availableCoordinates, gameCopy, player) {
@@ -105,10 +108,18 @@ export class AIPlayer extends Player {
     }
   }
 
-  getAdjacentCoordinate(board, availableCoordinates) {
-    let opponentMoves = getFilledCoordinatesBySymbol(gameCopy.board);
+  getAdjacentCoordinate(game, availableCoordinates) {
+    let opponentCoordinate = game.board.getFirstFilledCoordinateBySymbol(
+      game.player1.symbol,
+    );
+
+    console.log(`First opponent coordinate: ${opponentCoordinate}`);
     for (let i = 0; i < availableCoordinates.length; i++) {
+      console.log(`looping on available move ${i}: ${availableCoordinates[i]}`);
       let thisCoordinate = availableCoordinates[i];
+      if (thisCoordinate.isAdjacentTo(opponentCoordinate)) {
+        return thisCoordinate;
+      }
     }
   }
 }
