@@ -1,22 +1,18 @@
 import { Player } from './player.js';
 import { Coordinate } from './coordinate.js';
 import { SimulatedGame } from './simulated-game.js';
+import { Move } from './move.js';
 import * as constants from './constants.js';
-import * as minimax from './minimax.js';
 
 export class AIPlayer extends Player {
   constructor(turnOrder) {
     super(turnOrder, true, 'The Computer');
-    this.minimaxSolver = new minimax.Minimax();
   }
 
   getAIChosenCoordinate(gameCopy) {
     let availableCoordinates = this.getAvailableCoordinates(gameCopy.board);
 
-    return this.minimaxSolver.findCoordinateForBestMove(
-      availableCoordinates,
-      gameCopy,
-    );
+    return this.findCoordinateForBestMove(availableCoordinates, gameCopy);
   }
 
   getAvailableCoordinates(board) {
@@ -38,5 +34,33 @@ export class AIPlayer extends Player {
     }
 
     return availableCoordinates;
+  }
+
+  findCoordinateForBestMove(availableCoordinates, gameCopy) {
+    let immediateWinCoordinate = this.checkForImmediateWin(
+      availableCoordinates,
+      gameCopy,
+    );
+    if (immediateWinCoordinate) {
+      console.log('immediate win evaluated to true');
+      return immediateWinCoordinate;
+    }
+
+    if (gameCopy.board.cellIsEmpty(constants.CENTER_COORDINATE)) {
+      return constants.CENTER_COORDINATE;
+    }
+  }
+
+  checkForImmediateWin(availableCoordinates, gameCopy) {
+    let simGame = new SimulatedGame(gameCopy);
+    for (let i = 0; i < availableCoordinates.length; i++) {
+      let thisCoordinate = availableCoordinates[i];
+      simGame.executeMove(new Move(simGame.currentPlayer, thisCoordinate));
+
+      if (simGame.board.won === true) {
+        return thisCoordinate;
+      }
+      simGame.board.resetCell(thisCoordinate);
+    }
   }
 }
