@@ -51,6 +51,9 @@ export class Board {
 
   setAllCellsOccupied() {
     this.allCellsOccupied = this.allCellsAreOccupied();
+    if (this.allCellsAreOccupied === true) {
+      this.winningSymbol = 'tie';
+    }
   }
 
   allCellsAreOccupied() {
