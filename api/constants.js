@@ -6,8 +6,8 @@ export const FRIEND_MODE = 'friend';
 export const DEFAULT_GAME_MODE = COMPUTER_MODE;
 
 // Board Constants
-export const NUM_OF_ROWS = 3;
-export const NUM_OF_COLUMNS = 3;
+export const ROW_COUNT = 3;
+export const COL_COUNT = 3;
 
 // Coordinate Constants
 export const CENTER = new Coordinate('index', [1, 1]);
