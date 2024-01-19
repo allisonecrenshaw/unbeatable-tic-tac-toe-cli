@@ -151,21 +151,4 @@ export class Board {
     }
     return false;
   }
-
-  getFirstFilledCoordinateBySymbol(symbol) {
-    console.log(`looking for symbol: ${symbol}`);
-    for (let rowIndex = 0; rowIndex < this.cells.length; rowIndex++) {
-      for (
-        let columnIndex = 0;
-        columnIndex < this.cells[rowIndex].length;
-        columnIndex++
-      ) {
-        console.log(`in get op cells, cell ${rowIndex}, ${columnIndex}`);
-        if (this.cells[rowIndex][columnIndex] === symbol) {
-          console.log(`returning coordinate`);
-          return new Coordinate('index', [rowIndex, columnIndex]);
-        }
-      }
-    }
-  }
 }
