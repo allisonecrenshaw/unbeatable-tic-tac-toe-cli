@@ -12,7 +12,6 @@ export class Board {
     this.rowLabels = ['A', 'B', 'C'];
     this.won = false;
     this.winningSymbol = null;
-    this.allCellsOccupied = false;
   }
 
   display() {
@@ -36,19 +35,7 @@ export class Board {
     this.cells[coordinate.x][coordinate.y] = ' ';
   }
 
-  updateBoardStates() {
-    this.setAllCellsOccupied();
-    this.updateWinState();
-  }
-
-  setAllCellsOccupied() {
-    this.allCellsOccupied = this.allCellsAreOccupied();
-    if (this.allCellsAreOccupied === true) {
-      this.winningSymbol = 'tie';
-    }
-  }
-
-  allCellsAreOccupied() {
+  allCellsOccupied() {
     for (let rowIndex = 0; rowIndex < this.cells.length; rowIndex++) {
       for (let columnIndex = 0; columnIndex < this.cells[rowIndex].length; columnIndex++) {
         if (this.cells[rowIndex][columnIndex] === ' ') {
@@ -64,6 +51,9 @@ export class Board {
 
     if (this.winningSymbol !== null) {
       this.won = true;
+    }
+    if (this.allCellsOccupied()) {
+      this.winningSymbol = 'tie';
     }
   }
 

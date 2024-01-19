@@ -26,7 +26,7 @@ export class Game {
 
       this.executeTurn();
 
-      if (this.board.won === true || this.board.allCellsOccupied === true) {
+      if (this.board.won === true || this.board.allCellsOccupied()) {
         this.finished = true;
         this.board.display();
         this.printFinishMessage();
@@ -55,18 +55,11 @@ export class Game {
       return this.getValidMoveFromUser();
     }
 
-    return new Move(
-      this.currentPlayer,
-      this.currentPlayer.getAIPlayerCoordinate(_.cloneDeep(this)),
-    );
+    return new Move(this.currentPlayer, this.currentPlayer.getAIMoveCoordinate(_.cloneDeep(this)));
   }
 
   getValidMoveFromUser() {
-    for (
-      let moveAttempts = 0;
-      moveAttempts < constants.MAX_INPUT_ATTEMPTS;
-      moveAttempts++
-    ) {
+    for (let moveAttempts = 0; moveAttempts < constants.MAX_INPUT_ATTEMPTS; moveAttempts++) {
       const coordinateInput = readlineSync.question(
         `\nPlease enter the coordinate for your move (ex: A1): `,
       );
@@ -110,7 +103,7 @@ export class Game {
 
   executeMove(move) {
     this.board.placeSymbol(move);
-    this.board.updateBoardStates();
+    this.board.updateWinState();
   }
 
   switchPlayer() {
@@ -136,8 +129,6 @@ export class Game {
   }
 
   getWinningPlayer() {
-    return this.board.winningSymbol === this.player1.symbol
-      ? this.player1
-      : this.player2;
+    return this.board.winningSymbol === this.player1.symbol ? this.player1 : this.player2;
   }
 }
