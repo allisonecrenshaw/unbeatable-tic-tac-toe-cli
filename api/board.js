@@ -1,4 +1,5 @@
 import { Coordinate } from './coordinate.js';
+import { COL_COUNT, ROW_COUNT } from './constants.js';
 
 export class Board {
   initialize() {
@@ -150,5 +151,21 @@ export class Board {
       return true;
     }
     return false;
+  }
+
+  getAvailableCoordinates(board) {
+    let availableCoordinates = [];
+
+    for (let rowIndex = 0; rowIndex < ROW_COUNT; rowIndex++) {
+      for (let columnIndex = 0; columnIndex < COL_COUNT; columnIndex++) {
+        if (this.cells[rowIndex][columnIndex] === ' ') {
+          let coordinateArray = [rowIndex, columnIndex];
+          let coordinate = new Coordinate('array', coordinateArray);
+          availableCoordinates.push(coordinate);
+        }
+      }
+    }
+
+    return availableCoordinates;
   }
 }
