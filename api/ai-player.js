@@ -10,9 +10,30 @@ export class AIPlayer extends Player {
   }
 
   getAIPlayerCoordinate(gameCopy) {
+    console.log('Getting available moves.');
     let availableCoordinates = this.getAvailableCoordinates(gameCopy.board);
 
-    return this.findCoordinateForBestMove(availableCoordinates, gameCopy);
+    console.log('Computer checking for possible wins.');
+    let immediateWinCoordinate = this.checkForImmediateWin(
+      availableCoordinates,
+      gameCopy,
+      gameCopy.currentPlayer,
+    );
+
+    if (immediateWinCoordinate) return immediateWinCoordinate;
+
+    console.log('Computer checking for possible OPPONENT wins.');
+    let opponentImmediateWinCoordinate = this.checkForImmediateWin(
+      availableCoordinates,
+      gameCopy,
+      gameCopy.player1,
+    );
+
+    if (opponentImmediateWinCoordinate) return opponentImmediateWinCoordinate;
+
+    console.log('Computer found no immediate win conditions.');
+    console.log('Making call to findCoordinateForBestMove()');
+    return this.findCoordinateForBestMove(gameCopy);
   }
 
   getAvailableCoordinates(board) {
@@ -36,30 +57,6 @@ export class AIPlayer extends Player {
     return availableCoordinates;
   }
 
-  findCoordinateForBestMove(availableCoordinates, gameCopy) {
-    let immediateWinCoordinate = this.checkForImmediateWin(
-      availableCoordinates,
-      gameCopy,
-      gameCopy.currentPlayer,
-    );
-
-    if (immediateWinCoordinate) {
-      console.log('immediate win evaluated to true');
-      return immediateWinCoordinate;
-    }
-
-    let opponentImmediateWinCoordinate = this.checkForImmediateWin(
-      availableCoordinates,
-      gameCopy,
-      gameCopy.player1,
-    );
-
-    if (opponentImmediateWinCoordinate) {
-      console.log('opponent immediate win is imminent. blocking.');
-      return opponentImmediateWinCoordinate;
-    }
-  }
-
   checkForImmediateWin(availableCoordinates, gameCopy, player) {
     let simGame = new SimulatedGame(gameCopy);
     for (let i = 0; i < availableCoordinates.length; i++) {
@@ -73,22 +70,38 @@ export class AIPlayer extends Player {
     }
   }
 
-  centerCoordinateIsAvailable(board) {
-    return board.cellIsEmpty(constants.CENTER);
+  findCoordinateForBestMove(gameCopy) {
+    console.log('Inside findCoordinateForBestMove.');
+    let bestScore = -Infinity;
+    let bestCoordinate = null;
+
+    for (let rowIndex = 0; rowIndex < constants.NUM_OF_ROWS; rowIndex++) {
+      for (
+        let columnIndex = 0;
+        columnIndex < constants.NUM_OF_COLUMNS;
+        columnIndex++
+      ) {
+        if (gameCopy.board.cells[rowIndex][columnIndex] === ' ') {
+          let coordinate = new Coordinate('index', [rowIndex, columnIndex]);
+          gameCopy.board.placeSymbol(
+            new Move(gameCopy.currentPlayer, coordinate),
+          );
+          let score = this.minimax(gameCopy.board);
+          gameCopy.board.resetCell(coordinate);
+
+          if (score > bestScore) {
+            bestScore = score;
+            bestCoordinate = coordinate;
+          }
+        }
+      }
+    }
+
+    console.log('bestcoordinate:', bestCoordinate);
+    return bestCoordinate;
   }
 
-  getAvailableCorner(board) {
-    switch (true) {
-      case board.cellIsEmpty(constants.TOP_LEFT_CORNER):
-        return constants.TOP_LEFT_CORNER;
-      case board.cellIsEmpty(constants.BOTTOM_LEFT_CORNER):
-        return constants.BOTTOM_LEFT_CORNER;
-      case board.cellIsEmpty(constants.TOP_RIGHT_CORNER):
-        return constants.TOP_RIGHT_CORNER;
-      case board.cellIsEmpty(constants.BOTTOM_RIGHT_CORNER):
-        return constants.BOTTOM_RIGHT_CORNER;
-      default:
-        return false;
-    }
+  minimax(board) {
+    return 1;
   }
 }
