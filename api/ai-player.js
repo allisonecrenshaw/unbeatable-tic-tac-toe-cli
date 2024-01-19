@@ -9,7 +9,7 @@ export class AIPlayer extends Player {
     super(turnOrder, true, 'The Computer');
   }
 
-  getAIChosenCoordinate(gameCopy) {
+  getAIPlayerCoordinate(gameCopy) {
     let availableCoordinates = this.getAvailableCoordinates(gameCopy.board);
 
     return this.findCoordinateForBestMove(availableCoordinates, gameCopy);

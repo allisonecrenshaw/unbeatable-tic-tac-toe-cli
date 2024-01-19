@@ -57,7 +57,7 @@ export class Game {
 
     return new Move(
       this.currentPlayer,
-      this.currentPlayer.getAIChosenCoordinate(_.cloneDeep(this)),
+      this.currentPlayer.getAIPlayerCoordinate(_.cloneDeep(this)),
     );
   }
 
