@@ -43,13 +43,6 @@ export class Coordinate {
   toString() {
     return `${this.x}, ${this.y}`;
   }
-
-  isAdjacentTo(coordinate) {
-    return (
-      (this.x === coordinate.x && Math.abs(this.y - coordinate.y) === 1) ||
-      (this.y === coordinate.y && Math.abs(this.x - coordinate.x) === 1)
-    );
-  }
 }
 
 export class CoordinateError extends Error {
