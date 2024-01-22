@@ -61,8 +61,6 @@ export class AIPlayer extends Player {
           }
         }
       }
-
-      return bestCoordinate;
     }
 
     console.log('bestcoordinate: ', bestCoordinate);
