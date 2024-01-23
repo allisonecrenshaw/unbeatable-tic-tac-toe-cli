@@ -46,6 +46,9 @@ export class AIPlayer extends Player {
         let coordinate = new Coordinate('index', [rowIndex, columnIndex]);
 
         if (gameCopy.board.cellIsEmpty(coordinate)) {
+          console.log('**************************');
+          console.log('Starting at a root cell.');
+          console.log('**************************');
           gameCopy.board.placeSymbol(new Move(self, coordinate));
 
           // traverse the tree
