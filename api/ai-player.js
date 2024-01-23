@@ -44,6 +44,7 @@ export class AIPlayer extends Player {
     for (let rowIndex = 0; rowIndex < ROW_COUNT; rowIndex++) {
       for (let columnIndex = 0; columnIndex < COL_COUNT; columnIndex++) {
         let coordinate = new Coordinate('index', [rowIndex, columnIndex]);
+        console.log(`this coordinate: ${coordinate}`);
 
         if (gameCopy.board.cellIsEmpty(coordinate)) {
           console.log('**************************');
@@ -88,7 +89,7 @@ export class AIPlayer extends Player {
       // reset won and winningSymbol on board for other iterations?
       gameCopy.board.won = false;
       gameCopy.board.winningSymbol = null;
-      return winningSymbol;
+      return scores[winningSymbol];
     }
 
     let bestScore;
