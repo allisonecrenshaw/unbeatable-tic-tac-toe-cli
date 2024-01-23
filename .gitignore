@@ -59,7 +59,7 @@ jspm_packages/
 yarn-error.log
 
 # VS Code
-.vscode/
+# .vscode/
 
 # Other
 .DS_Store
