@@ -35,8 +35,6 @@ export class AIPlayer extends Player {
   }
 
   getBestCoordinateWithMinimax(gameCopy, self, opp) {
-    console.log('Inside getBestCoordinateWithMinimax.');
-
     let bestScore = -Infinity; // start low so anything, even a negative value, registers as better
     let bestCoordinate = null;
 
@@ -44,12 +42,8 @@ export class AIPlayer extends Player {
     for (let rowIndex = 0; rowIndex < ROW_COUNT; rowIndex++) {
       for (let columnIndex = 0; columnIndex < COL_COUNT; columnIndex++) {
         let coordinate = new Coordinate('index', [rowIndex, columnIndex]);
-        console.log(`this coordinate: ${coordinate}`);
 
         if (gameCopy.board.cellIsEmpty(coordinate)) {
-          console.log('**************************');
-          console.log('Starting at a root cell.');
-          console.log('**************************');
           gameCopy.board.placeSymbol(new Move(self, coordinate));
 
           // traverse the tree
@@ -72,21 +66,12 @@ export class AIPlayer extends Player {
   }
 
   minimax(gameCopy, depth, isMaximizing, self, opp) {
-    console.log(`Calling minimax at depth ${depth}`);
-    gameCopy.board.display();
-
-    // assumes human player is X due to main.js structure
     // needs refactor if randomizing starting player
     let scores = { X: -1, O: 1, tie: 0 };
 
     gameCopy.board.updateWinState();
     if (gameCopy.board.winningSymbol !== null) {
-      console.log(`Game is over in simulation.`);
-      console.log(`Winner is ${gameCopy.board.winningSymbol}`);
-      console.log(`Score: ${scores[gameCopy.board.winningSymbol]}`);
-
       let winningSymbol = gameCopy.board.winningSymbol;
-      // reset won and winningSymbol on board for other iterations?
       gameCopy.board.won = false;
       gameCopy.board.winningSymbol = null;
       return scores[winningSymbol];
@@ -120,7 +105,6 @@ export class AIPlayer extends Player {
         }
       }
     }
-    console.log(`Best score in this loop of minimax is: ${bestScore}`);
     return bestScore;
   }
 }
