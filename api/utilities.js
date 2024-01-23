@@ -16,10 +16,7 @@ export function displayGameModeOptions() {
 
 export function getGameMode() {
   const gameModeInput = getGameModeInput();
-  if (
-    gameModeInput === constants.FRIEND_MODE ||
-    gameModeInput === constants.COMPUTER_MODE
-  ) {
+  if (gameModeInput === constants.FRIEND_MODE || gameModeInput === constants.COMPUTER_MODE) {
     console.log(`\nYou have chosen to play in ${gameModeInput} mode.`);
     return gameModeInput;
   }
@@ -46,16 +43,10 @@ export function createPlayer1() {
 export function createPlayer2(gameMode, player1Name) {
   let player2Name = '';
 
-  for (
-    let moveAttempts = 0;
-    moveAttempts < constants.MAX_INPUT_ATTEMPTS;
-    moveAttempts++
-  ) {
+  for (let moveAttempts = 0; moveAttempts < constants.MAX_INPUT_ATTEMPTS; moveAttempts++) {
     player2Name = readlineSync.question(`\nEnter a name for Player 2: `);
     if (arePlayerNamesSame(player1Name, player2Name) === true) {
-      console.log(
-        `Error: Input name for player 2 is same as player 1. Try again.`,
-      );
+      console.log(`Error: Input name for player 2 is same as player 1. Try again.`);
     }
     return new Player(2, false, player2Name);
   }
