@@ -51,8 +51,7 @@ export class Board {
 
     if (this.winningSymbol !== null) {
       this.won = true;
-    }
-    if (this.allCellsOccupied()) {
+    } else if (this.allCellsOccupied()) {
       this.winningSymbol = 'tie';
     }
   }
